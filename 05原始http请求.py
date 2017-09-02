@@ -38,12 +38,10 @@ def parser_url(url):
     return host, port, resource
 
 
-def fetch(url, method='GET'):
+def fetch(url):
     r'''发送请求.
     
-    :param url: str, 请求的url, 需填写完整.
-
-    :param method: str, 请求方法.
+    :param url: str, 请求的完整url.
     '''
 
     host, port, resource = parser_url(url)
@@ -54,7 +52,7 @@ def fetch(url, method='GET'):
         sock = ssl.wrap_socket(socket.socket())
 
     sock.connect((host, port))
-    request = '{} {} HTTP/1.1\r\nHost: {}\r\nConnection: close\r\n\r\n'.format(method.upper(), resource, host)
+    request = 'GET {} HTTP/1.1\r\nHost: {}\r\nConnection: close\r\n\r\n'.format(resource, host)
     sock.sendall(request.encode())
     response = b''
     while True:
@@ -72,7 +70,7 @@ def fetch(url, method='GET'):
 
 
 def main():
-    url = 'https://www.zzzzer.com'
+    url = 'https://www.baidu.com'
     fetch(url)
 
 
