@@ -7,7 +7,7 @@ import socket
 import ssl
 
 
-def parser_url(url):
+def parse_url(url):
     r'''解析url.
     
     :param url: str, 去除协议后的url.
@@ -34,6 +34,8 @@ def parser_url(url):
     else:
         host = url[:pos]
         resource = url[pos:]
+        if (not resource.endswith('/')) and (resource.rfind('?') == -1):
+            resource += '/'
 
     return host, port, resource
 
@@ -44,7 +46,7 @@ def fetch(url):
     :param url: str, 请求的完整url.
     '''
 
-    host, port, resource = parser_url(url)
+    host, port, resource = parse_url(url)
 
     if port == 80:
         sock = socket.socket()
