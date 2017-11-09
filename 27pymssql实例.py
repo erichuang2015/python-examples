@@ -3,8 +3,8 @@
 
 import pymssql
 
-conn = pymssql.connect(host='192.168.1.1',user='sa',password='123')
-cur=conn.cursor()
+conn = pymssql.connect(host='192.168.1.1', user='sa', password='123')
+cur = conn.cursor()
 
 # 查看所有数据库
 cur.execute('select name from sysdatabases')
