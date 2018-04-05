@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''原始http和https请求, 只支持默认端口.'''
+"""原始http和https请求, 只支持默认端口."""
 
 import socket
 import ssl
 
 
 def parse_url(url):
-    r'''解析url.
+    """解析url.
     
     :param url: str, 去除协议后的url.
 
     :return host: str, 
             port: int,
             resource: str.
-    '''
+    """
 
     protocol, _, url = url.partition('://')
     protocol = protocol.lower()
@@ -41,17 +41,16 @@ def parse_url(url):
 
 
 def fetch(url):
-    r'''发送请求.
+    """发送请求.
     
     :param url: str, 请求的完整url.
-    '''
+    """
 
     host, port, resource = parse_url(url)
 
-    if port == 80:
-        sock = socket.socket()
-    elif port == 443:
-        sock = ssl.wrap_socket(socket.socket())
+    sock = socket.socket()
+    if port == 443:
+        sock = ssl.wrap_socket(sock)
 
     sock.connect((host, port))
     request = 'GET {} HTTP/1.1\r\nHost: {}\r\nConnection: close\r\n\r\n'.format(resource, host)

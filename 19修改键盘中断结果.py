@@ -18,6 +18,5 @@ def main():
         print('\n[Finished in %.3fs]\n' % finished)
 
 
-
 if __name__ == '__main__':
     main()

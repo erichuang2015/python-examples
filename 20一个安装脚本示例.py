@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''一般将安装脚本命名为setup.py，
+"""一般将安装脚本命名为setup.py，
 然后执行 python3 setup.py install 安装.
-'''
+"""
 
 from setuptools import setup
 

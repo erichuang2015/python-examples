@@ -6,7 +6,7 @@ import shutil
 
 
 def del_folders():
-    r'''批量删除非空文件夹.'''
+    """批量删除非空文件夹."""
 
     base_path = '/home/zzzzer/Documents/temp/Projects'
     for root, dirs, files in os.walk(base_path):
@@ -18,7 +18,7 @@ def del_folders():
 
 
 def recode_files():
-    r'''批量修改文件编码.'''
+    """批量修改文件编码."""
 
     base_path = '/home/zzzzer/Documents/temp/Projects'
     for root, dirs, files in os.walk(base_path):
@@ -33,7 +33,7 @@ def recode_files():
 
 
 def tab_to_space():
-    r'''批量将文件中的tab转换成4个空格.'''
+    """批量将文件中的tab转换成4个空格."""
 
     base_path = '/home/zzzzer/Documents/temp/Projects'
     for root, dirs, files in os.walk(base_path):
@@ -49,5 +49,5 @@ def tab_to_space():
 
 if __name__ == '__main__':
     del_folders()
-    #recode_files()
-    #tab_to_space()
+    # recode_files()
+    # tab_to_space()

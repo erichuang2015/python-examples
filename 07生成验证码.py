@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''验证码生成模块.'''
+"""验证码生成模块."""
 
 __author__ = 'zzzzer'
 
@@ -30,29 +30,29 @@ class Captcha:
 
     @classmethod
     def _rand_text(cls):
-        r'''生成指定长度英文数字混合字符串.
+        """生成指定长度英文数字混合字符串.
 
         :param  length: str, 要生成字符串的长度.
 
         :return :str.       
-        '''
+        """
 
         return ''.join(choice(cls.characters) for i in range(cls.length))
 
     @classmethod
     def _rand_color(cls):
-        r'''获取一个随机颜色.
+        """获取一个随机颜色.
 
         :retrun: str.
-        '''
+        """
 
         return choice(cls.color_list)
  
     def draw(self):
-        r'''绘制验证码图片.
+        """绘制验证码图片.
 
         :return: str, 验证码答案.
-        '''
+        """
 
         draw = ImageDraw.Draw(self.image)
         width, height = self.size
@@ -82,37 +82,36 @@ class Captcha:
         return text
  
     def raw(self):
-        r'''生成验证码图片字节流, 再通过HttpResponse发给用户.
+        """生成验证码图片字节流, 再通过HttpResponse发给用户.
 
         :return: bytes, 图片字节流.
-        '''
+        """
 
         stream = io.BytesIO()
         self.image.save(stream, 'png')
         return stream.getvalue()
 
     def show(self):
-        r'''在图片浏览器中查看生成的验证码.
+        """在图片浏览器中查看生成的验证码.
         
-        '''
+        """
 
         self.image.show()
 
     def save(self, img_name='temp.jpg'):
-        r'''保存生成的验证码.
+        """保存生成的验证码.
         
-        :param img_name: str, 保存的图片名称.
-        '''
+        """
         
         self.image.save(img_name)
 
 
 def get_captcha():
-    r'''生成验证码.
+    """生成验证码.
 
     :return code: str, 字符串.
             raw: bytes, 图片字节流.
-    '''
+    """
     captcha = Captcha()
     code = captcha.draw()
     raw = captcha.raw()

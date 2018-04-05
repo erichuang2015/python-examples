@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''和sqlite3用法基本一致'''
+"""和sqlite3用法基本一致"""
 
 import pymysql
 

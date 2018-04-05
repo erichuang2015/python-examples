@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''穷举法破解MD5密码, 假设元素不重复.'''
+"""穷举法破解MD5密码, 假设元素不重复."""
 
 from hashlib import md5
 from string import ascii_letters, digits

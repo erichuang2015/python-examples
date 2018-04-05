@@ -44,7 +44,7 @@ If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!'''
 
-s2 = """Gur Mra bs Clguba, ol Gvz Crgref
+s2 = '''Gur Mra bs Clguba, ol Gvz Crgref
 
 Ornhgvshy vf orggre guna htyl.
 Rkcyvpvg vf orggre guna vzcyvpvg.
@@ -64,7 +64,7 @@ Abj vf orggre guna arire.
 Nygubhtu arire vf bsgra orggre guna *evtug* abj.
 Vs gur vzcyrzragngvba vf uneq gb rkcynva, vg'f n onq vqrn.
 Vs gur vzcyrzragngvba vf rnfl gb rkcynva, vg znl or n tbbq vqrn.
-Anzrfcnprf ner bar ubaxvat terng vqrn -- yrg'f qb zber bs gubfr!"""
+Anzrfcnprf ner bar ubaxvat terng vqrn -- yrg'f qb zber bs gubfr!'''
 
 # 因为13正好是26的一半，所以可以互相转换，而不用改代码
 d = {}

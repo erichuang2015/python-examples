@@ -6,7 +6,7 @@ import time
 
 
 def load1():
-    r'''打印进度条.'''
+    """打印进度条."""
 
     for i in range(100):
         # sys.stdout.write('>')
@@ -17,7 +17,7 @@ def load1():
 
 
 def load2():
-    r'''打印百分比.'''
+    """打印百分比."""
     
     for i in range(100):
         # sys.stdout.write('\r%s%%'%(i+1))
@@ -28,7 +28,7 @@ def load2():
 
 
 def load3():
-    r'''打印进度条和百分比.'''
+    """打印进度条和百分比."""
 
     for i in range(100):
         k = i + 1
@@ -39,7 +39,7 @@ def load3():
 
 
 def load4():
-    r'''让进度条短一些.'''
+    """让进度条短一些."""
 
     for i in range(100):
         k = i + 1

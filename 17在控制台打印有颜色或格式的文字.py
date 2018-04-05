@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''在控制台打印有颜色或格式的文字
+"""在控制台打印有颜色或格式的文字
 
 格式：\033[显示方式;前景色;背景色m
 
@@ -30,7 +30,7 @@ r'''在控制台打印有颜色或格式的文字
 例子：
 \033[1;31;40m    <!--1-高亮显示 31-前景色红色  40-背景色黑色-->
 \033[0m          <!--采用终端默认设置，即取消颜色设置-->]]]
-'''
+"""
 
 
 STYLE = {
@@ -76,7 +76,7 @@ STYLE = {
 
 
 def use_style(string, fore='', back='', mode=''):
-    r'''选择控制台打印文字格式.
+    """选择控制台打印文字格式.
     
     :param  string: str, 输出的文字内容.
     :param  fore: str, 文字前景色.
@@ -84,7 +84,7 @@ def use_style(string, fore='', back='', mode=''):
     :param  back: str, 文字模式, 如是否加粗等.
 
     :return : str.
-    '''
+    """
 
     mode  = '%s' % STYLE['mode'].get(mode, '')
     fore  = '%s' % STYLE['fore'].get(fore, '')
