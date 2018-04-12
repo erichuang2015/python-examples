@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''Thread类的daemon属性
+"""Thread类的daemon属性
 
 表示线程是否为守护线程。
 如果某个子线程的daemon属性为False，主线程结束时会检测该子线程是否结束，
@@ -10,7 +10,7 @@ r'''Thread类的daemon属性
 同时所有daemon值为True的子线程将随主线程一起结束，而不论是否完成。
 
 daemon属性的值默认为False，如果需要修改，则必须在调用start()方法启动线程钱进行设置
-'''
+"""
 
 import threading
 import time

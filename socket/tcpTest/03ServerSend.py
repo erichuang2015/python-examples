@@ -17,7 +17,7 @@ if __name__ == '__main__':
     
     print('等待客户端接入...')
     while True:
-    # 建立客户端连接
+        # 建立客户端连接
         clientsocket,addr = serversocket.accept()
         print(" 连接地址 : %s" % str(addr))
         msg = '欢迎访问菜鸟教程！'

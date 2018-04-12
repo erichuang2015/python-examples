@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''Condition类
+"""Condition类
 
 使用Condition演示生产者/消费者问题
-'''
+"""
 
 
 import threading

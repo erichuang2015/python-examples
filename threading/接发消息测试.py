@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-'''
+"""
 测试控制台接发消息的可行性
-'''
+"""
 
 import time
 import threading
@@ -19,7 +19,6 @@ def send_msg():
     while True:
         msg = input()
         print('[我]: {}'.format(msg))
-
 
 
 if __name__ == '__main__':

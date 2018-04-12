@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''Pool类map方法.
+"""Pool类map方法.
 
 map方法会先把传入的生成器转换成列表，所以说不能传入无限大小的生成器！
 apply_async方法虽然不会马上把生成器转换成列表，
@@ -10,7 +10,7 @@ apply_async方法虽然不会马上把生成器转换成列表，
 会直接继续开启下一个进程，这点很不好
 
 总结：不要传入无限大小的生成器，优先使用map方法
-'''
+"""
 
 import os
 import time
@@ -35,3 +35,4 @@ if __name__ == '__main__':
         p.terminate()
         p.join()
     print('All subprocesses done.')
+

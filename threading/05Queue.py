@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''queue模块的Queue类
+"""queue模块的Queue类
 
 使用Queue类实现线程同步,
 尤其适合需要在多个线程之间进行信息交换的场合，
 实现了多线程编程所需要的所有锁语义
-'''
+"""
 
 import threading
 import time

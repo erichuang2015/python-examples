@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''threading模块的Event类.'''
+"""threading模块的Event类."""
 
 import threading
 
@@ -10,5 +10,3 @@ import threading
 class mythread(threading.Thread):
     def __init__(self, threadname):
         super().__init__(name=threadname)
-
-    def run(self):

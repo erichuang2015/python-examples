@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''threading模块的Thread类.
+"""threading模块的Thread类.
 
 和multiprogress模块的Process类很相似
-'''
+"""
 
 import time
 import threading

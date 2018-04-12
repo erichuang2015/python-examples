@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-r'''
+"""
 subprocess 模块可以让我们非常方便地启动一个子进程，
 然后控制其输入和输出
-'''
+"""
 
 import subprocess
 
