@@ -20,7 +20,7 @@ def main():
     tasks = [hello(n) for n in range(8)]
     # 执行任务
     loop.run_until_complete(asyncio.wait(tasks))    
-    loop.close() 
+    loop.close()
 
     
 if __name__ == '__main__':

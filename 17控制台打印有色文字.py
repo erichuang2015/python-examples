@@ -47,24 +47,25 @@ def cool(string:str, color:str=None, bold:bool=False) -> str:
 
     :param  color: 文字前景色.
     
-    :param  bold: 是否加粗.
+    :param  bold: 是否高亮.
     """
 
     color  = '%s' % COLOR.get(color, '')
     mode  = '1' if bold else ''
-    style = ';'.join([s for s in [mode, color] if s])
+    style = ';'.join(s for s in (mode, color) if s)
     return '\033[%sm%s\033[0m' % (style, string)
 
 
 def test():
-    print(cool('正常显示'))
+    print(cool('正常显示1'))
+    print(cool('正常显示2'))
     print('*'*60)
 
     print('测试前景色')
     print(cool('红色', 'r'))
     print(cool('绿色', 'g'))
-    print(cool('黄色', 'y'))
     print(cool('蓝色', 'b'))
+    print(cool('黄色', 'y'))
     print(cool('紫红色', 'p'))
     print(cool('青蓝色', 'c'))
     print('*'*60)
