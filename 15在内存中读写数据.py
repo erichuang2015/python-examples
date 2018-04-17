@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # coding:utf-8
 
-"""相关的应用是:
+"""在内存中读取数据
+
+相关的应用是:
 PIL的Image.open()是不能直接打开b"xxxx"形式的内容的,
 需要先令f = BytesIO(b"xxxx")读入, 再用Image.open(f)打开
 """
