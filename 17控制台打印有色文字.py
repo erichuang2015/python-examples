@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 """在控制台打印有颜色或格式的文字.
 

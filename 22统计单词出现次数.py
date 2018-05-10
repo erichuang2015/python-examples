@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 """统计字符串单词出现次数，不区分大小写."""
 

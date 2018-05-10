@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 """穷举法破解MD5密码, 假设元素不重复."""
 

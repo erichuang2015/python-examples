@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 """验证码生成模块."""
 
@@ -121,6 +121,7 @@ def get_captcha():
 if __name__ == '__main__':
 
     from finished import finished
+    # 检查性能
     @finished
     def test():
         for i in range(3000):

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 import re
 
@@ -56,6 +56,10 @@ def main4():
     s = pattern.sub(lambda x:chr(int(x.group(0).replace('\\u', ''), 16)), s)
     print(s)
 
+    # 另一种形式, 多两个单引号
+    s = ascii('咕咕太硬了') # "'\\u5495\\u5495\\u592a\\u786c\\u4e86'"
+    print(eval(s))
+
 
 if __name__ == '__main__':
-    main3()
+    main4()

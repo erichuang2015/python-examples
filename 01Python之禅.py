@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 
 src = '''Gur Mra bs Clguba, ol Gvz Crgref
@@ -51,4 +51,4 @@ d = {}
 for c in (65, 97):
     for i in range(26):
         d[chr(c+i)] = chr((i+13) % 26 + c)
-print(''.join(d.get(c, c) for c in src)==dst)
+print((''.join(d.get(c, c) for c in src))==dst)
