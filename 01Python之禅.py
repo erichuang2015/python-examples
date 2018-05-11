@@ -51,4 +51,4 @@ d = {}
 for c in (65, 97):
     for i in range(26):
         d[chr(c+i)] = chr((i+13) % 26 + c)
-print((''.join(d.get(c, c) for c in src))==dst)
+print(''.join(d.get(c, c) for c in src) == dst)

@@ -5,7 +5,7 @@ import time
 
 
 def main():
-    start = time.time()
+    start = time.perf_counter()
     try:
         for i in range(6):
             print('hello world!')
@@ -13,7 +13,7 @@ def main():
     except KeyboardInterrupt:
         pass
     finally:
-        end = time.time()
+        end = time.perf_counter()
         finished = end - start
         print('\n[Finished in %.3fs]\n' % finished)
 

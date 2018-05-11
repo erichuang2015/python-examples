@@ -3,7 +3,7 @@
 
 """流畅的python中的例子.
 
-关于编码, 总是应该显示的指定, 如调用`open()`时
+对于使用的编码, 总是应该显示的指定, 如调用`open()`时
 """
 
 import sys
@@ -26,11 +26,10 @@ def main():
         sys.getfilesystemencoding()
     """
 
-    my_file = open('00test.py', 'w')
-
-    for expression in expressions.split():
-        value = eval(expression)
-        print(expression.rjust(30), '->', repr(value))
+    with open('00test.py', 'r') as my_file:
+        for expression in expressions.split():
+            value = eval(expression)
+            print(expression.rjust(30), '->', repr(value))
 
 
 if __name__ == '__main__':

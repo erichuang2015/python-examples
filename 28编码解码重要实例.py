@@ -4,7 +4,7 @@
 import re
 
 
-def main1():
+def example1():
     """utf-8编码解码."""
 
     # 无法显示为ascii的字符(大于127)都以\x##显示
@@ -17,7 +17,7 @@ def main1():
     print(b)
 
 
-def main2():
+def example2():
     """unicode编码解码."""
 
     print(hex(ord('咕')))
@@ -32,7 +32,7 @@ def main2():
     print('\u5495\u5495\u592a\u786c\u4e86')
 
 
-def main3():
+def example3():
     """把十六进制数字组成的字符串转换成utf-8."""
 
     # s是wireshark中复制出来的一段十六进制数字组成的字符串
@@ -47,7 +47,7 @@ def main3():
         print('[lv.{:0<2}][{}]: {}'.format(level.decode(), nn.decode(), txt.decode().strip()))
 
 
-def main4():
+def example4():
     """处理'\\uxxxx'形式的字符串."""
 
     # 一段非常规的unicode字符串
@@ -62,4 +62,7 @@ def main4():
 
 
 if __name__ == '__main__':
-    main4()
+    #example1()
+    #example2()
+    #example3()
+    example4()

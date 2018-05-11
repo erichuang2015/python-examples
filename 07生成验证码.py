@@ -23,7 +23,7 @@ class Captcha:
     if platform.system() == 'Windows':
         font = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 24)
     elif platform.system() == 'Linux':
-        font = ImageFont.truetype('/usr/share/fonts/arial.ttf', 24)
+        font = ImageFont.truetype('/usr/share/fonts/winfonts/arial.ttf', 24)
 
     def __init__(self):
         self.image = Image.new('RGB', self.size, (255, 255, 255))
@@ -120,16 +120,15 @@ def get_captcha():
 
 if __name__ == '__main__':
 
-    from finished import finished
-    # 检查性能
-    @finished
-    def test():
-        for i in range(3000):
-            img = Captcha()
-            code = img.draw()
-    test()
+    # from finished import finished
+    # # 检查性能
+    # @finished
+    # def test():
+    #     for i in range(3000):
+    #         img = Captcha()
+    #         code = img.draw()
+    # test()
 
-    # for i in range(3):
-    #     img = Captcha()
-    #     code = img.draw()
-    #     img.show()
+    img = Captcha()
+    code = img.draw()
+    img.show()
