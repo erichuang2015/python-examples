@@ -4,14 +4,14 @@
 import socket
 
 
-# udp发送方
 if __name__ == '__main__':
     sk = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    target_ip = input('目标IP地址: ')
+    address = ('127.0.0.1', 9527)
 
     while True:
-        send_data = input('>>> ')
-        sk.sendto(send_data.encode('utf-8'), (target_ip, 9527))
-        if send_data == 'byebye':
+        try:
+            send_data = input()
+        except EOFError:
             break
+        sk.sendto(send_data.encode('utf-8'), address)
     sk.close()
