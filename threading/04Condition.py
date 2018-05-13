@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 """Condition类
 
-使用Condition演示生产者/消费者问题
+使用Condition演示生产者/消费者问题.
 """
 
 

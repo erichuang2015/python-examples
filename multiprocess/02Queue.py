@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
-"""进程中通信，用Queue类.
+"""进程中通信, 用Queue类.
 
-可以看到，两个进程是同步的
+可以看到, 两个进程是同步的.
 """
 
 import os

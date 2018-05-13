@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 """Pool类的apply_async方法.
 
-如果要启动大量的子进程，可以用进程池的方式批量创建子进程，
-multiprocessing模块Pool类提供了该功能
+如果要启动大量的子进程, 可以用进程池的方式批量创建子进程,
+multiprocessing模块Pool类提供了该功能.
 """
 
 import os

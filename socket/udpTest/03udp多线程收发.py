@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 from socket import socket, SOCK_DGRAM
 from threading import Thread

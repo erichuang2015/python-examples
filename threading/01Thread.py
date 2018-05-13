@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 """threading模块的Thread类.
 
-和multiprogress模块的Process类很相似
+和multiprogress模块的Process类很相似.
 """
 
 import time

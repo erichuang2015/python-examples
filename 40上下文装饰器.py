@@ -14,7 +14,7 @@ def open_flie(filename, mode, encoding='utf-8'):
     finally:
         fp.close()
 # try之前的是`__enter__`执行的
-# try中的是with语句块中要执行的
+# try中的是as的内容, 可以yield一个空值
 # finally是`__exit__`执行的
 
 
@@ -24,6 +24,6 @@ def cd(path):
     old_cwd = os.getcwd()
     os.chdir(path)
     try:
-        yield # with中没有要执行的, 那么可以就写一个yield
+        yield # 可以就写一个yield
     finally:
         os.chdir(old_cwd)

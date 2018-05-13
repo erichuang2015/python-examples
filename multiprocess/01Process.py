@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-# coding:utf-8
+# coding: utf-8
 
 """multiprocessing模块Process类.
 
-创建子进程时，只需要创建一个 Process 实例，用start()方法启动
-切记，不要在多进程调用函数中使用全局变量，
-这样会引起一些奇怪的问题
+创建子进程时, 只需要创建一个 Process 实例, 用start()方法启动
+切记, 不要在多进程调用函数中使用全局变量,
+这样会引起一些奇怪的问题.
 """
 
 import time
