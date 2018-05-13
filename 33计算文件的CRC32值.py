@@ -2,11 +2,10 @@
 # coding: utf-8
 
 import os
-import sys
 import zlib
 
 
-filename = sys.argv[1]
+filename = '00test.py'
 # 判断是否是文件
 if os.path.isfile(filename):
     with open(filename, 'rb') as f:

@@ -5,10 +5,9 @@ import os
 import shutil
 
 
-def del_folders():
+def del_folders(base_path):
     """批量删除非空文件夹."""
 
-    base_path = '/home/zzzzer/Documents/temp/Projects'
     for root, dirs, files in os.walk(base_path):
         for name in dirs:
             if name == '.vs':
@@ -17,10 +16,9 @@ def del_folders():
                 # shutil.rmtree(path)
 
 
-def recode_files():
+def recode_files(base_path):
     """批量修改文件编码."""
 
-    base_path = '/home/zzzzer/Documents/temp/Projects'
     for root, dirs, files in os.walk(base_path):
         for name in files:
             if name.endswith(('.c', '.h', '.cpp')):
@@ -32,10 +30,9 @@ def recode_files():
                 #     f.write(s.decode('gbk').encode())
 
 
-def tab_to_space():
+def tab_to_space(base_path):
     """批量将文件中的tab转换成4个空格."""
 
-    base_path = '/home/zzzzer/Documents/temp/Projects'
     for root, dirs, files in os.walk(base_path):
         for name in files:
             if name.endswith(('.c', '.h', '.cpp')):
@@ -48,6 +45,7 @@ def tab_to_space():
 
 
 if __name__ == '__main__':
-    del_folders()
-    # recode_files()
-    # tab_to_space()
+    base_path = '/home/zzzzer/Documents/temp/Projects'
+    del_folders(base_path)
+    # recode_files(base_path)
+    # tab_to_space(base_path)
