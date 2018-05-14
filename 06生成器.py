@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""生产者, 消费者例子."""
+"""生成器演示生产者, 消费者例子."""
 
 
 def consumer():         # 定义消费者，由于有yeild关键词，此消费者为一个生成器

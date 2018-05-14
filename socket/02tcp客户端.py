@@ -32,6 +32,9 @@ def main():
             break
         cfd.sendall(send_data.encode('utf-8'))
         recv_data = cfd.recv(BUF_SIZE)
+        if not recv_data:
+            print('对方服务器', address, '已关闭')
+            break
         print(recv_data.decode('utf-8'))
     cfd.close()
 
