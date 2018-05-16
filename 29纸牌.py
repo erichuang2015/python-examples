@@ -4,7 +4,6 @@
 """流畅的Python, Python风格的纸牌."""
 
 import collections
-
 from random import choice
 
 

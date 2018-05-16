@@ -15,26 +15,24 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 class Captcha:
+    """验证码类."""
 
     size = (70, 32)
     length = 4
     characters = re.sub(r'[oOiI]', '', ascii_letters) + digits * 4
-    color_list = ['black', 'darkblue', 'darkred', 'darkgreen']
-    if platform.system() == 'Windows':
-        font = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 24)
-    elif platform.system() == 'Linux':
+    color_list = ('black', 'darkblue', 'darkred', 'darkgreen')
+    if platform.system() == 'Linux':
         font = ImageFont.truetype('/usr/share/fonts/winfonts/arial.ttf', 24)
-
-    def __init__(self):
-        self.image = Image.new('RGB', self.size, (255, 255, 255))
+    elif platform.system() == 'Windows':
+        font = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 24)
 
     @classmethod
     def _rand_text(cls):
         """生成指定长度英文数字混合字符串.
 
-        :param  length: str, 要生成字符串的长度.
+        :param length: str, 要生成字符串的长度.
 
-        :return :str.       
+        :rtype: str.       
         """
 
         return ''.join(choice(cls.characters) for i in range(cls.length))
@@ -43,15 +41,18 @@ class Captcha:
     def _rand_color(cls):
         """获取一个随机颜色.
 
-        :retrun: str.
+        :rtype: str.
         """
 
         return choice(cls.color_list)
+
+    def __init__(self):
+        self.image = Image.new('RGB', self.size, (255, 255, 255))
  
     def draw(self):
         """绘制验证码图片.
 
-        :return: str, 验证码答案.
+        :rtype: str, 验证码答案.
         """
 
         draw = ImageDraw.Draw(self.image)
@@ -82,9 +83,9 @@ class Captcha:
         return text
  
     def raw(self):
-        """生成验证码图片字节流, 再通过HttpResponse发给用户.
+        """生成验证码图片字节流, 可通过HttpResponse发给用户.
 
-        :return: bytes, 图片字节流.
+        :rtype: bytes.
         """
 
         stream = io.BytesIO()
@@ -106,11 +107,10 @@ class Captcha:
         self.image.save(img_name)
 
 
-def get_captcha():
-    """生成验证码.
+def build_captcha():
+    """返回验证码字符串和验证码图片字节流.
 
-    :return code: str, 字符串.
-            raw: bytes, 图片字节流.
+    :rtype: (str, raw).
     """
     captcha = Captcha()
     code = captcha.draw()

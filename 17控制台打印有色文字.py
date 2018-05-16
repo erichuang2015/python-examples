@@ -40,7 +40,7 @@ COLOR = {
 }
 
 
-def cool(string:str, color:str=None, bold:bool=False) -> str:
+def cool(string: str, color: str=None, bold: bool=False) -> str:
     """选择控制台打印文字格式.
     
     :param  string: 输出的文字内容.
