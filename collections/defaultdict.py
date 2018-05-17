@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""defaultdict用法示例，注意和普通字典比较."""
+"""defaultdict用法示例, 注意和普通字典比较."""
 
 from collections import defaultdict
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     result = defaultdict(log_missing, current)
     print('Before:', dict(result))
     for key, amount in increments:
-        # 当result中不存在该key时，会调用log_missing函数
-        # 打印'key added'，并把该key的值设为0
+        # 当result中不存在该key时, 会调用log_missing函数
+        # 打印'key added', 并把该key的值设为0
         result[key] += amount
     print('After:', dict(result))

@@ -32,6 +32,7 @@ def main():
     # SOCK_STREAM: 面向连接, 即tcp
     # SOCK_DGRAM: 面向非连接, 即udp
     lfd = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # 端口复用
     lfd.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     # 端口号只能用int类型
     address = ('127.0.0.1', 9527)

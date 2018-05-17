@@ -46,6 +46,6 @@ def tab_to_space(base_path):
 
 if __name__ == '__main__':
     base_path = '/home/zzzzer/Documents/temp/Projects'
-    del_folders(base_path)
-    # recode_files(base_path)
-    # tab_to_space(base_path)
+    #del_folders(base_path)
+    #recode_files(base_path)
+    #tab_to_space(base_path)
