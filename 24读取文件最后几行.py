@@ -10,6 +10,7 @@ from collections import Iterator, Iterable
 if __name__ == '__main__':
     with open('00test.py') as f:
         # deque第一个参数接收一个可迭代对象
+        # 只保留最后5行
         last_n_lines = deque(f, maxlen=5)
     for line in last_n_lines:
         # line中已有换行符, 所以把print自带的换行符去掉

@@ -48,6 +48,8 @@ class SingletonMeta(type):
 class Spam(metaclass=SingletonMeta):
     """利用元类创建单例方法1.
 
+    继承元类的类的__new__()方法会覆盖元类的__call__()方法.
+
     这种方法和上面的 经典单例模式2, 本质上是*不一致*的.
     区别在__init__()执行次数上.
     """
