@@ -16,7 +16,7 @@ class Singleton:
     # 这里的__new__()要传入 cls, *args, **kwargs 三个参数,
     # 这是个规定.
     # *args, **kwargs 中的内容, 会传入__init__()中
-    def __new__(cls):
+    def __new__(cls, *args, **kwargs):
         if not hasattr(cls, '_instance'):
             # *注意* super().__new__()中不能传入cls以外的参数
             # 因为Singleton的父类Object的__new__只有cls一个参数
@@ -26,7 +26,7 @@ class Singleton:
         # 这里返回时, 实例的__init__()尚未调用,
         # 所以每次调用类时, 会再执行一次__init__()
         return cls._instance
-    def __init__(self, n, d=22):
+    def __init__(self, n):
         self.n = n
         print('Creating Singleton', self.n)
 
