@@ -39,7 +39,7 @@ class Singleton2:
 
 class SingletonMeta(type):
     def __init__(self, *args, **kwargs):
-        self._instance = None
+        self._instance = None # 被类继承后, 会变成类属性
         super().__init__(*args, **kwargs)
     def __call__(self, *args, **kwargs):
         if not self._instance:
@@ -72,19 +72,19 @@ class Spam2(metaclass=SingletonMeta2):
 def main():
     s1 = Singleton(1) # 会打印内容
     s2 = Singleton(2) # 会打印内容
-    print(s1==s2)
+    print(s1 is s2)
     print('='*50)
     s1 = Singleton2(1) # 会打印内容
     s2 = Singleton2(2) # 会打印内容
-    print(s1==s2)
+    print(s1 is s2)
     print('='*50)
     s1 = Spam(1) # 会打印内容
     s2 = Spam(2) # 不会打印内容
-    print(s1==s2)
+    print(s1 is s2)
     print('='*50)
     s1 = Spam2(1) # 会打印内容
     s2 = Spam2(2) # 不会打印内容
-    print(s1==s2)
+    print(s1 is s2)
 
 
 if __name__ == '__main__':
