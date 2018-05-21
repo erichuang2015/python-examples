@@ -17,7 +17,7 @@ def print_lib():
     # 默认不输出stderr的内容, `stderr=subprocess.STDOUT`参数, 将stderr输出到stdout
     # timeout 参数可设置超时时间, 单位秒
     output_bytes = subprocess.check_output(['pip3', 'list'], stderr=subprocess.STDOUT)
-    output_text = output.decode('utf-8').strip()
+    output_text = output_bytes.decode('utf-8').strip()
     lib_list = output_text.split('\n')[2:]
     for lib in lib_list:
         # 只打印库名, 不打印版本
@@ -41,5 +41,5 @@ def command_arg():
 
 
 if __name__ == '__main__':
-    #print_lib()
-    command_arg()
+    print_lib()
+    #command_arg()

@@ -11,7 +11,7 @@ def main():
             print('hello world!')
             time.sleep(1)
     except KeyboardInterrupt: # 注意每个线程都有自己的异常
-        pass
+        exit(0) # exit只退出当前线程
     finally:
         end = time.perf_counter()
         finished = end - start
