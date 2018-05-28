@@ -13,8 +13,7 @@ class Singleton:
     虽然它们的参数不同, 但是是同一个实例.
     可以借助这个方法, 修改实例的属性.
     """
-    # 这里的__new__()要传入 cls, *args, **kwargs 三个参数,
-    # 这是个规定.
+    # 这里的__new__()要传入 cls, *args, **kwargs 三个参数
     # *args, **kwargs 中的内容, 会传入__init__()中
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, '_instance'):
@@ -53,7 +52,7 @@ class SingletonMeta(type):
     def __call__(self, *args, **kwargs):
         if not self._instance:
             # __call__()会调用__init__(), 
-            # 所以__init__()不会多次执行
+            # 所以以后再创建实例时, __init__()不会再执行
             self._instance = super().__call__(*args, **kwargs)
         # 这里返回的实例和Singleton2中__new__()返回的是不同的
         # 这里返回的是调用了__init__()的实例,
@@ -93,28 +92,26 @@ class Spam2(metaclass=SingletonMeta2):
 
 
 def main():
-    #print(dir(Spam))
-    #print(dir(Spam2))
     print('='*50)
     s1 = Singleton(1) # 会打印内容
     s2 = Singleton(2) # 会打印内容
     print(s1 is s2)
-    print(s2.n) # 属性被修改
+    print(s1.n) # s1属性被修改
     print('='*50)
     s1 = Singleton2(1) # 会打印内容
     s2 = Singleton2(2) # 会打印内容
     print(s1 is s2)
-    print(s2.n) # 属性被修改
+    print(s1.n) # s1属性被修改
     print('='*50)
     s1 = Spam(1) # 会打印内容
     s2 = Spam(2) # 不会打印内容
     print(s1 is s2)
-    print(s2.n) # 属性未被修改
+    print(s1.n) # s1属性未被修改
     print('='*50)
     s1 = Spam2(1) # 会打印内容
     s2 = Spam2(2) # 不会打印内容
     print(s1 is s2)
-    print(s2.n) # 属性未被修改
+    print(s1.n) # s1属性未被修改
     print('='*50)
 
 

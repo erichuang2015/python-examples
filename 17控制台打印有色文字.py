@@ -43,11 +43,11 @@ COLOR = {
 def cool(string: str, color: str=None, bold: bool=False) -> str:
     """选择控制台打印文字格式.
     
-    :param  string: 输出的文字内容.
+    :param string: 输出的文字内容.
 
-    :param  color: 文字前景色.
+    :param color: 文字前景色.
     
-    :param  bold: 是否高亮.
+    :param bold: 是否高亮.
     """
 
     color  = '%s' % COLOR.get(color, '')

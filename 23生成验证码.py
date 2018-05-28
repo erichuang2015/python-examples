@@ -30,8 +30,6 @@ class Captcha:
     def _rand_text(cls):
         """生成指定长度英文数字混合字符串.
 
-        :param length: str, 要生成字符串的长度.
-
         :rtype: str.       
         """
 
@@ -50,9 +48,9 @@ class Captcha:
         self.image = Image.new('RGB', self.size, (255, 255, 255))
  
     def draw(self):
-        """绘制验证码图片.
+        """绘制验证码图片, 返回验证码答案.
 
-        :rtype: str, 验证码答案.
+        :rtype: str.
         """
 
         draw = ImageDraw.Draw(self.image)
