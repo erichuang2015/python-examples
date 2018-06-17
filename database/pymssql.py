@@ -1,6 +1,8 @@
 #!usr/bin/env python3
 # coding: utf-8
 
+"""pymssql实例."""
+
 import pymssql
 
 conn = pymssql.connect(host='192.168.1.1', user='sa', password='123')

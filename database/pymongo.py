@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+"""pymongo实例."""
+
 import pymongo
 
 

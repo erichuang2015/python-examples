@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+"""捕获Ctrl+c的键盘中断."""
+
 import time
 
 

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""和sqlite3用法基本一致"""
+"""pymssql实例.
+
+和sqlite3用法基本一致.
+"""
 
 import pymysql
 

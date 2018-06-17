@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+"""sqlite3实例."""
+
 import sqlite3
 
 
