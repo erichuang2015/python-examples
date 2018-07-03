@@ -26,20 +26,22 @@ conn = sqlite3.connect('example.db')
 # 创建一个游标
 cursor = conn.cursor()
 # 创建表, 不加"if not exists", 当表存在时会报错
+# unique使该字段的值只能唯一
+# check使插入的数据必须满足指定要求
+# default不插入该字段, 则默认
 # primary key 使字段成为主键, 每个表都必须有, 唯一标识数据库表中的各行/记录
 # 注意在sqlite3中主键可以为空, 这里显示指定其不能为空
 # 主键可以不指定unique, 因为其必定唯一
-# check使插入的数据必须满足指定要求
-# default不插入该字段, 则默认
 cursor.execute('create table if not exists "info" ('\
-    'id int primary key not null,'\
+    'id integer not null,'\
     'name text not null unique,'\
-    'age int check(age > 0),'\
-    'sex text default "male")')
+    'age integer check(age > 0),'\
+    'sex text default "male",'\
+    'primary key(id))')
 # 查看已有表
 cursor.execute('select name from sqlite_master where type="table" order by name').fetchall()
 # 插入指定数据
-cursor.execute('insert into info values(0, "张三", 20, "male")')
+cursor.execute('insert into info values(?, ?, ?, ?)', (0, "张三", 20, "male"))
 # 插入指定数据
 cursor.execute('insert into info (id, name, age) values(?, ?, ?)', (1, "李四", 19))
 # 更新数据
@@ -48,14 +50,15 @@ cursor.execute('insert into info (id, name, age) values(?, ?, ?)', (1, "李四",
 # glob(区分大小写), '?'替代一个字符; '*'替代0个或多个字符;
 cursor.execute('update info set name="王五" where name="张三"')
 # 选择指定数据
-# distinct可以消除重复; desc降序, asc升序
+# distinct可以消除重复;
+# order by排序, desc降序, asc升序
 cursor.execute('select distinct name from info where id in (0, 1) order by age desc')
 # 返回选择的信息, lst是tuple构成的列表
 # 如: [('王五',), ('李四',)]
 lst = cursor.fetchall()
 print(lst)
 # 删除指定记录, 不加where, 删除所有
-cursor.execute('delete from info where id = 1 and age = 20')
+cursor.execute('delete from info where id=1')
 # 重命名表
 cursor.execute('alter table info rename to hello')
 # 在表中加入新字段
