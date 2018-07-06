@@ -26,8 +26,11 @@ def long_time_task(name):
         print(t)
         # 2.打印异常完整异常信息
         #traceback.print_exc()
-        # 2等价下面
+        # 等价下面
         #traceback.print_exception(*sys.exc_info())
+        # 3.不打印, 拿到上面的字符串
+        s = traceback.format_exc()
+        print(s)
     finally:
         print('Child process %s' % name)
 
