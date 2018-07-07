@@ -1,21 +1,28 @@
 #!/usr/bin/env python3
 # coding: utf-8"""
 
-"""多进程与键盘中断.
+"""TODO 尝试多进程中的子进程单独退出.
 
-一次键盘中断, 会向所有父子进程发送KeyboardInterrupt异常,
-所以父子进程都需捕获.
+多进程中, 当一个子进程结束时, 它不会立即退出(ps中查看还存在),
+需等待所有其他子进程结束后, 才会真正退出.
 
-TODO
-一个问题.
-当一个子进程先退出(无论正常或异常)时, 再按键盘中断, 会抛出异常, 原因未知.
+当一个子进程先退出(无论正常或异常)时, 再按键盘中断, 会抛出异常.
+
+看看能不能实现结束后真正退出, 从而解决这个问题.
 """
 
 import os
 import sys
 import time
 import random
+import signal
 from multiprocessing import Pool
+
+
+def kill_self(signal):
+    print(123)
+    os.kill(os.getppid(), signal)
+    print(456)
 
 
 def long_time_task(name):
@@ -23,6 +30,7 @@ def long_time_task(name):
         print('Run task %s (%s)...' % (name, os.getpid()))
         start = time.time()
         time.sleep(random.randint(4, 10))
+        kill_self(9)
         end = time.time()
         print('Task %s runs %0.2f seconds.' % (name, (end - start)))
     except KeyboardInterrupt: # 这里不要指定异常名, 会捕获所有异常

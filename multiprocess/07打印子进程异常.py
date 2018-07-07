@@ -20,6 +20,7 @@ def long_time_task(name):
         start = time.time()
         time.sleep(6)
         end = time.time()
+        print('Task %s runs %0.2f seconds.' % (name, (end - start)))
     except: # 这里不要指定异常名, 会捕获所有异常
         # 1.打印异常类名
         t, v, tb = sys.exc_info()
