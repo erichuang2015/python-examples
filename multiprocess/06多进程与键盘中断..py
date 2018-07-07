@@ -4,7 +4,11 @@
 """多进程与键盘中断.
 
 一次键盘中断, 会向所有父子进程发送KeyboardInterrupt异常,
-所以父子进程都需捕获
+所以父子进程都需捕获.
+
+TODO
+一个问题.
+当一个子进程先退出(无论正常或异常)时, 再按键盘中断, 会抛出异常, 原因未知.
 """
 
 import os
@@ -14,19 +18,15 @@ import random
 from multiprocessing import Pool
 
 
-def exit_test():
-    raise SystemError # 子进程中用exit()会阻塞?
-
-
 def long_time_task(name):
     try:
         print('Run task %s (%s)...' % (name, os.getpid()))
         start = time.time()
-        time.sleep(random.randint(5, 10))
+        time.sleep(random.randint(4, 10))
         end = time.time()
-        exit_test()
-    except KeyboardInterrupt:
-        pass
+    except KeyboardInterrupt: # 这里不要指定异常名, 会捕获所有异常
+        t, v, tb = sys.exc_info()
+        print(t)
     finally:
         print('Child process %s' % name)
 
