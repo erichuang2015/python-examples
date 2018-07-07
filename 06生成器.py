@@ -15,7 +15,7 @@ def consumer():
         r = 'consume %s OK' % n
 
 
-def produce(consumer):
+def producer(consumer):
     """定义生产者."""
 
     print('[Producer] Init Producer ......')
@@ -31,4 +31,4 @@ def produce(consumer):
 
 
 if __name__ == '__main__':
-    produce(consumer())
+    producer(consumer())

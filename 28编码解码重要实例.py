@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+"""多种编码的应对方式."""
+
 import re
+from urllib import parse
 
 
 def example1():
@@ -61,8 +64,16 @@ def example4():
     print(eval(s))
 
 
+def example5():
+    """处理URL编码."""
+
+    url = 'https://www.yelp.com/biz/dr-h%C3%A9ctor-m-mayol-san-juan-2'
+    print(parse.unquote(url))
+
+
 if __name__ == '__main__':
     #example1()
     #example2()
     #example3()
-    example4()
+    #example4()
+    example5()

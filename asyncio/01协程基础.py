@@ -3,16 +3,22 @@
 
 import asyncio # 引入asyncio 这个包，才可以使用 async 和 await
 import threading
+import uvloop
+
+
+# 使用uvloop, 获得更高的事件循环速度
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
 # 通过关键字async定义协程
 # async定义的函数会变成一个无法直接执行的 coroutine 对象，必须将其注册到事件循环中才可以执行
 async def hello(index):       
-    print('Hello world! index=%s, thread=%s' % (index, threading.currentThread()))
+    print('Hello world! index=%s, thread=%s' % (index, threading.currentThread().ident))
     # 模拟IO任务
     # await 用来挂起阻塞方法的执行
-    await asyncio.sleep(1)     
-    print('Hello again! index=%s, thread=%s' % (index, threading.currentThread()))
+    # 只有async关键字定义的函数才能使用await
+    await asyncio.sleep(1)
+    print('Hello again! index=%s, thread=%s' % (index, threading.currentThread().ident))
 
 
 def main():
@@ -20,7 +26,7 @@ def main():
     loop = asyncio.get_event_loop() 
     # 初始化任务列表, hello()不会立即执行, 需放入事件循环中才行
     tasks = [hello(n) for n in range(8)]
-    # 执行任务
+    # 执行任务, 多个任务需要调用asyncio.wait(), 单个任务不需要
     loop.run_until_complete(asyncio.wait(tasks))    
     loop.close()
 

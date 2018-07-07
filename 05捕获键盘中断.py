@@ -4,6 +4,7 @@
 """捕获Ctrl+c的键盘中断."""
 
 import time
+import sys
 
 
 def main():
@@ -13,6 +14,8 @@ def main():
             print('hello world!')
             time.sleep(1)
     except KeyboardInterrupt: # 注意每个线程都有自己的异常
+        t, v, tb = sys.exc_info()
+        print(t)
         exit(0) # exit只退出当前线程
     finally:
         end = time.perf_counter()
