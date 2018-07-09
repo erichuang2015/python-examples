@@ -47,5 +47,5 @@ if __name__ == '__main__':
     try:
         p.join() # join()等待所有子进程结束
     except KeyboardInterrupt: # 一次键盘中断, 所有父子进程都会收到
-        pass
+        p.join() # 这里必须再加个join(), 不然父进程有可能先结束
     print('Parent process done.')
