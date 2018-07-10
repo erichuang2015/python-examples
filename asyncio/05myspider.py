@@ -1,3 +1,5 @@
+"""尝试构建框架."""
+
 import asyncio
 
 from aiohttp import ClientSession
