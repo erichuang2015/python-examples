@@ -3,14 +3,21 @@
 
 """查看本机IP."""
 
+import socks
+import socket
+
 import requests
 from bs4 import BeautifulSoup
 
 
 def main():
+
+    # 使用socks5代理, 方法1
+    socks.set_default_proxy(socks.SOCKS5, '127.0.0.1', 1080)
+    socket.socket = socks.socksocket
     url = 'https://www.ipip.net/'
     with requests.Session() as session:
-        # 使用socks5代理
+        # 使用socks5代理, 方法2
         # session.proxies = {
         #     'http': 'socks5://127.0.0.1:1080',
         #     'https': 'socks5://127.0.0.1:1080'

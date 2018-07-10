@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import asyncio
+import time
 import uvloop
 
 from aiohttp import ClientSession 
@@ -15,13 +16,11 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 async def wget(url):
     # 关闭Session是另一个异步操作，所以每次你都需要使用async with关键字
-    async with ClientSession() as session:         
-        async with session.get(url) as response:
-            # return 和 await 可以连用,
-            # return的结果不能直接获取,
-            # 要先把coroutine封装成一个task,
-            # 然后用result()方法获取
-            return await response.text()
+    session = ClientSession()         
+    response = await session.get(url)
+    text = await response.text()
+    await session.close()
+    return text
 
 
 @finished
