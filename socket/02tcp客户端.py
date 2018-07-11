@@ -28,7 +28,7 @@ def main():
     while True:
         try:
             send_data = input()
-        except EOFError: # 监测C+d
+        except EOFError:  # 监测C+d
             break
         cfd.sendall(send_data.encode('utf-8'))
         recv_data = cfd.recv(BUF_SIZE)
