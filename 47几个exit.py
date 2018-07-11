@@ -8,11 +8,12 @@
 import os
 import sys
 
+
 def main():
     try:
         print('main')
-        #exit(0) # 注意exit()不能用于子进程! 会造成子进程阻塞!
-        #os._exit(0) # 不会执行finally, 用于在线程中退出
+        # exit(0)  # 注意exit()不能用于子进程! 会造成子进程阻塞!
+        # os._exit(0)  # 不会执行finally, 用于在线程中退出
         sys.exit(1)
     finally:
         print('finally')
@@ -20,5 +21,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-

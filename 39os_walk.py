@@ -11,7 +11,7 @@ def print_all(path='.'):
     # dirnames是列表, 当前路径名下的目录
     # filenames是列表, 当前路径名下的文件
     # dirnames和filenames不能同时都有内容
-    for dirpath, dirnames, filenames in os.walk('.'):
+    for dirpath, dirnames, filenames in os.walk(path):
         print(dirpath, dirnames, filenames)
 
 

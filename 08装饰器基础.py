@@ -16,9 +16,11 @@ def reg(func):
 # 带参数装饰器
 def log(text):
     print('log') # 会被打印, 即使没有调用被装饰的函数
+
     def inner(func):
         print('inner') # 会被打印, 即使没有调用被装饰的函数
         # 不加这句, 会改变函数名(__name__)
+
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             print('%s %s():' % (text, func.__name__))
@@ -27,7 +29,7 @@ def log(text):
     return inner
 
 
-@log('execute') # 装饰器最内层以外内容在模块加载时执行!
+@log('execute')  # 装饰器最内层以外内容在模块加载时执行!
 def now():
     print('hello world!')
     return

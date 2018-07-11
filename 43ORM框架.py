@@ -17,6 +17,7 @@ class StringField(Field):
     def __init__(self, name):
         super(StringField, self).__init__(name, 'varchar(100)')
 
+
 class IntegerField(Field):
 
     def __init__(self, name):
@@ -26,7 +27,7 @@ class IntegerField(Field):
 class ModelMetaclass(type):
 
     def __new__(cls, name, bases, attrs):
-        if name=='Model':
+        if name == 'Model':
             # __new__()方法接收到的参数依次是:
             # 当前准备创建的类的对象
             # 类的名字
@@ -41,8 +42,8 @@ class ModelMetaclass(type):
                 mappings[k] = v
         for k in mappings.keys():
             attrs.pop(k)
-        attrs['__mappings__'] = mappings # 保存属性和列的映射关系
-        attrs['__table__'] = name # 假设表名和类名一致
+        attrs['__mappings__'] = mappings  # 保存属性和列的映射关系
+        attrs['__table__'] = name  # 假设表名和类名一致
         return type.__new__(cls, name, bases, attrs)
 
 

@@ -13,15 +13,16 @@ from finished import finished
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
-async def wget(url):
+async def wget(url, sem):
     # 关闭Session是另一个异步操作，所以每次你都需要使用async with关键字
-    async with ClientSession() as session:         
-        async with session.get(url) as response:
-            # return 和 await 可以连用,
-            # return的结果不能直接获取,
-            # 要先把coroutine封装成一个task,
-            # 然后用result()方法获取
-            return await response.text()
+    async with sem:
+        async with ClientSession() as session:
+            async with session.get(url) as response:
+                # return 和 await 可以连用,
+                # return的结果不能直接获取,
+                # 要先把coroutine封装成一个task,
+                # 然后用result()方法获取
+                return await response.text()
 
 
 @finished
@@ -32,10 +33,12 @@ def main():
     # task可以获取函数执行状态和返回值
     #tasks = [asyncio.ensure_future(wget(url)) for i in range(100)]
 
+    # 限制并发数
+    sem = asyncio.Semaphore(8)
     loop = asyncio.get_event_loop()
     # 在定义事件循环loop后,
     # 可以用loop.create_task())把coroutine封装成一个task,
-    tasks = [loop.create_task(wget(url)) for i in range(16)]
+    tasks = [loop.create_task(wget(url, sem)) for i in range(32)]
     loop.run_until_complete(asyncio.wait(tasks))
     loop.close()
     for task in tasks:

@@ -23,7 +23,7 @@ def load2():
         # sys.stdout.write('\r%s%%'%(i+1))
         # sys.stdout.flush()
         # 等价上面两句
-        print('\r%s%%'%(i+1), end='', flush=True)
+        print('\r%s%%' % (i+1), end='', flush=True)
         time.sleep(0.03)
 
 
@@ -33,7 +33,7 @@ def load3():
     for i in range(100):
         k = i + 1
         s = '>'*i + ' '*(100-k)
-        sys.stdout.write('\r' + s + '[%s%%]'%(i+1))
+        sys.stdout.write('\r' + s + '[%s%%]' % (i+1))
         sys.stdout.flush()
         time.sleep(0.03)
 

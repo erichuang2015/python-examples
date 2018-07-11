@@ -12,7 +12,8 @@ os.listdir('.')
 os.chdir('..')
 
 """1.拆分路径"""
-path = __file__ # 拿到的是绝对路径
+# 拿到的是绝对路径
+path = __file__
 # 返回一个文件路径和文件名组成的二元组
 os.path.split(path)
 # 返回文件的路径

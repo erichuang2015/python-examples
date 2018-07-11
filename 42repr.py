@@ -14,4 +14,4 @@ class Item:
         # 这样就可以区分 int 和 str
         return 'Item({!r})'.format(self.name)
         # 或
-        return 'Item(%r)' % self.name
+        #return 'Item(%r)' % self.name

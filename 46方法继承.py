@@ -13,6 +13,7 @@ class A:
     def haha(cls):
         print('A: haha!')
 
+
 class B(A):
     pass
 
@@ -34,13 +35,13 @@ class D(object):
     """普通类."""
     def __init__(self):
         pass
+
     def hello():
         """TODO 奇怪, 这里没加self, 却能正常调用, 可能解释器把它当成了静态方法."""
         print('D: hello, world!')
 
     def haha(self):
         print('D: haha!')
-
 
 
 A.hello()
@@ -50,4 +51,4 @@ B.haha()
 C.hello()
 C.haha()
 D.hello()
-#D.haha() # D.haha(123) 可以
+#D.haha()  # D.haha(123) 可以

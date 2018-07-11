@@ -31,12 +31,12 @@
 
 # 前景色
 COLOR = { 
-    'r': 31, # 红色
-    'g': 32, # 绿色
-    'b': 34, # 蓝色
-    'y': 33, # 黄色
-    'p': 35, # 紫红色
-    'c': 36, # 青蓝色
+    'r': 31,  # 红色
+    'g': 32,  # 绿色
+    'b': 34,  # 蓝色
+    'y': 33,  # 黄色
+    'p': 35,  # 紫红色
+    'c': 36,  # 青蓝色
 }
 
 
@@ -50,8 +50,8 @@ def cool(string: str, color: str=None, bold: bool=False) -> str:
     :param bold: 是否高亮.
     """
 
-    color  = '%s' % COLOR.get(color, '')
-    mode  = '1' if bold else ''
+    color = '%s' % COLOR.get(color, '')
+    mode = '1' if bold else ''
     style = ';'.join(s for s in (mode, color) if s)
     return '\033[%sm%s\033[0m' % (style, string)
 

@@ -33,7 +33,7 @@ class Captcha:
         :rtype: str.       
         """
 
-        return ''.join(choice(cls.characters) for i in range(cls.length))
+        return ''.join(choice(cls.characters) for _ in range(cls.length))
 
     @classmethod
     def _rand_color(cls):

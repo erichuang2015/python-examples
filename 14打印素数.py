@@ -16,11 +16,11 @@ def not_divisible(n):
 
 def primes():
     yield 2
-    it = odd_iter() # 初始序列
+    it = odd_iter()  # 初始序列
     while True:
-        n = next(it) # 返回序列的第一个数
+        n = next(it)  # 返回序列的第一个数
         yield n
-        it = filter(not_divisible(n), it) # 构造新序列
+        it = filter(not_divisible(n), it)  # 构造新序列
 
 
 if __name__ == '__main__':

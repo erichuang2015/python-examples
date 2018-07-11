@@ -32,12 +32,12 @@ cursor = conn.cursor()
 # primary key 使字段成为主键, 每个表都必须有, 唯一标识数据库表中的各行/记录
 # 注意在sqlite3中主键可以为空, 这里显示指定其不能为空
 # 主键可以不指定unique, 因为其必定唯一
-cursor.execute('create table if not exists "info" ('\
-    'id integer not null,'\
-    'name text not null unique,'\
-    'age integer check(age > 0),'\
-    'sex text default "male",'\
-    'primary key(id))')
+cursor.execute('create table if not exists "info" (\
+    id integer not null,\
+    name text not null unique,\
+    age integer check(age > 0),\
+    sex text default "male",\
+    primary key(id))')
 # 查看已有表
 cursor.execute('select name from sqlite_master where type="table" order by name').fetchall()
 # 插入指定数据
