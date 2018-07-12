@@ -2,11 +2,6 @@
 # coding: utf-8
 
 import asyncio
-import uvloop
-
-
-# 使用uvloop, 获得更高的事件循环速度
-asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
 async def wget(host):

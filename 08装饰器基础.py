@@ -15,10 +15,10 @@ def reg(func):
 
 # 带参数装饰器
 def log(text):
-    print('log') # 会被打印, 即使没有调用被装饰的函数
+    print('log')  # 会被打印, 即使没有调用被装饰的函数
 
-    def inner(func):
-        print('inner') # 会被打印, 即使没有调用被装饰的函数
+    def decorate(func):
+        print('inner')  # 会被打印, 即使没有调用被装饰的函数
         # 不加这句, 会改变函数名(__name__)
 
         @functools.wraps(func)
@@ -26,7 +26,7 @@ def log(text):
             print('%s %s():' % (text, func.__name__))
             return func(*args, **kwargs)
         return wrapper
-    return inner
+    return decorate
 
 
 @log('execute')  # 装饰器最内层以外内容在模块加载时执行!

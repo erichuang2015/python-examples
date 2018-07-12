@@ -2,14 +2,10 @@
 # coding: utf-8
 
 import asyncio
-import uvloop
 
 from aiohttp import ClientSession 
 
 from finished import finished
-
-
-asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
 async def wget(url):

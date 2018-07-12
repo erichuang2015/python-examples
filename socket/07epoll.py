@@ -9,7 +9,7 @@ def main():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind(('127.0.0.1', 9527))
-    server_socket.listen(5)
+    server_socket.listen(8)
     # 服务端设置非阻塞
     server_socket.setblocking(False)
     # 创建epoll
