@@ -8,7 +8,7 @@
 如果某个子线程的daemon属性为True, 主线程结束时不对这个子线程进行检查而直接退出，
 同时所有daemon值为True的子线程将随主线程一起结束, 而不论是否完成.
 
-daemon属性的值默认为False, 如果需要修改, 则必须在调用start()方法启动线程钱进行设置.
+daemon属性的值默认为False, 如果需要修改, 则必须在调用start()方法启动线程前进行设置.
 """
 
 import threading

@@ -22,6 +22,12 @@ def loop():
 if __name__ == '__main__':
     print('thread %s is running...' % threading.current_thread().name)
     t = threading.Thread(target=loop, name='LoopThread')
+    t.setDaemon(True)
     t.start()
-    t.join() # join()方法可以传入timeout参数
+    try:
+        t.join()  # join()方法可以传入timeout参数
+    except KeyboardInterrupt:
+        print(123)
+    finally:
+        print(456)
     print('thread %s ended.' % threading.current_thread().name)
