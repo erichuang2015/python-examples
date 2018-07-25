@@ -17,7 +17,9 @@ from PIL import Image, ImageDraw, ImageFont
 class Captcha:
     """验证码类."""
 
+    mode = 'RGB'
     size = (70, 32)
+    back_color = (255, 255, 255)
     length = 4
     characters = re.sub(r'[oOiI]', '', ascii_letters) + digits * 4
     color_list = ('black', 'darkblue', 'darkred', 'darkgreen')
@@ -27,30 +29,27 @@ class Captcha:
         font = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 24)
 
     @classmethod
-    def _rand_text(cls):
+    def _rand_text(cls) -> str:
         """生成指定长度英文数字混合字符串.
 
-        :rtype: str.       
         """
 
         return ''.join(choice(cls.characters) for _ in range(cls.length))
 
     @classmethod
-    def _rand_color(cls):
+    def _rand_color(cls) -> str:
         """获取一个随机颜色.
 
-        :rtype: str.
         """
 
         return choice(cls.color_list)
 
     def __init__(self):
-        self.image = Image.new('RGB', self.size, (255, 255, 255))
+        self.image = Image.new(self.mode, self.size, self.back_color)
  
-    def draw(self):
+    def draw(self) -> str:
         """绘制验证码图片, 返回验证码答案.
 
-        :rtype: str.
         """
 
         draw = ImageDraw.Draw(self.image)
@@ -80,24 +79,23 @@ class Captcha:
 
         return text
  
-    def raw(self):
+    def raw(self) -> bytes:
         """生成验证码图片字节流, 可通过HttpResponse发给用户.
 
-        :rtype: bytes.
         """
 
         stream = io.BytesIO()
         self.image.save(stream, 'png')
         return stream.getvalue()
 
-    def show(self):
+    def show(self) -> None:
         """在图片浏览器中查看生成的验证码.
         
         """
 
         self.image.show()
 
-    def save(self, img_name='temp.jpg'):
+    def save(self, img_name: str='temp.jpg') -> None:
         """保存生成的验证码.
         
         """
@@ -105,11 +103,11 @@ class Captcha:
         self.image.save(img_name)
 
 
-def build_captcha():
+def build_captcha() -> (str, bytes):
     """返回验证码字符串和验证码图片字节流.
 
-    :rtype: (str, raw).
     """
+
     captcha = Captcha()
     code = captcha.draw()
     raw = captcha.raw()

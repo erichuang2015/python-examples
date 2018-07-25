@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+"""
+LT模式: epoll默认模式, 只要缓冲区还有数据就会触发事件.
+ET模式: 事件只触发第一次, 无论缓冲区是否还有数据, 所以有可能导致数据被丢弃.
+
+详见下面例子.
+"""
+
 import socket
 import select
 
 
 def main():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    server_socket.bind(('127.0.0.1', 9527))
-    server_socket.listen(8)
     # 服务端设置非阻塞
     server_socket.setblocking(False)
+    # 端口复用
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_socket.bind(('127.0.0.1', 9527))
+    server_socket.listen(2)
     # 创建epoll
     epoll = select.epoll()
     # 注册监听server_socket
@@ -43,23 +51,25 @@ def main():
                     socket_list[client_socket.fileno()] = client_socket
                     print('已被连接:', client_address)
                 # 当有客户端的数据发送过来的时候，会触发 EPOLLIN 事件
-                elif event == select.EPOLLIN:
+                else:
                     client_socket = socket_list[fd]
-                    recv_data = client_socket.recv(1024)
+                    recv_data = client_socket.recv(8)
                     if recv_data:
                         print(recv_data.decode())
                         client_socket.send(recv_data.upper())
                     else:
                         print('对端关闭:', client_socket.getpeername())
-                        # 从epoll中删除文件描述符
-                        epoll.unregister(fd)
-                        # 从字典socket_list中删除
-                        socket_list.pop(fd)
                         client_socket.close()
+                        epoll.unregister(fd)
+                        socket_list.pop(fd)
     except KeyboardInterrupt:
         pass
     finally:
+        for client_socket in socket_list.values():
+            client_socket.close()
         server_socket.close()
+        epoll.close()
+        print('关闭成功!')
 
 
 if __name__ == '__main__':
