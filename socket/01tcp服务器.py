@@ -10,7 +10,6 @@ import socket
 import threading
 import time
 
-
 BUF_SIZE = 4096
 
 
@@ -18,6 +17,11 @@ def thread_handler(cfd, cli_addr):
     print('已被连接:', cli_addr)
     while True:
         # 接收客户端消息
+        # **注意**: tcp无法判断到底要接收多少数据,
+        # 所以无法保证完整读完数据,
+        # 数据的长度规则是双方约定好的,
+        # 如定义数据头, 定义尾字符,
+        # 例子有http.
         recv_data = cfd.recv(BUF_SIZE)
         # 对端关闭, 则会返回空值
         if not recv_data:
@@ -40,13 +44,12 @@ def main():
     # 设置最大连接数，超过后排队
     lfd.listen(2)
 
-    # 等待客户端连接
     print('tcp等待连接中...')
     start = time.perf_counter()
     try:
         while True:
             t = threading.Thread(target=thread_handler, args=lfd.accept())
-            # 设置线程daemon属性为True, 主线程不会等待改子线程退出后再退出
+            # 设置线程daemon属性为True, 主线程不会等待该子线程退出后再退出
             # 该属性要在线程运行前设置
             t.daemon = True
             t.start()

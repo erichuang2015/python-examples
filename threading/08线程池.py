@@ -8,6 +8,7 @@ import threading
 import contextlib
 import time
 
+
 # 创建空对象,用于停止线程
 StopEvent = object()
 
