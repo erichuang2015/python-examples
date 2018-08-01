@@ -41,9 +41,9 @@ cursor.execute('create table if not exists "info" (\
 # 查看已有表
 cursor.execute('select name from sqlite_master where type="table" order by name').fetchall()
 # 插入指定数据
-cursor.execute('insert into info values(?, ?, ?, ?)', (0, "张三", 20, "male"))
+cursor.execute('insert into info values (%s, %s, %s, %s)', (0, "张三", 20, "male"))
 # 插入指定数据
-cursor.execute('insert into info (id, name, age) values(?, ?, ?)', (1, "李四", 19))
+cursor.execute('insert into info (id, name, age) values (%s, %s, %s)', (1, "李四", 19))
 # 更新数据
 # where后可以跟 比较运算符, between, in, not in; 
 # like(不区分大小写), '_'替代一个字符; '%'替代0个或多个字符;
