@@ -8,7 +8,7 @@ import datetime
 d = datetime.date.today()
 print(d)
 
-# 今天日期时间
+# 今天日期和时间
 dt = datetime.datetime.today()
 print(dt)
 
@@ -24,3 +24,7 @@ t = time.time()
 print(t)
 timestamp = int(t)
 print(timestamp)
+
+# 时间戳转换成时间, 可存入mysql(DATETIME类型)
+dt = datetime.datetime.fromtimestamp(timestamp)
+print(dt)

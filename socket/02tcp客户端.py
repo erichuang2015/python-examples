@@ -23,7 +23,7 @@ def main():
     print('连接%s:%d中...' % address, end='')
     cfd.connect(address)
     print('成功!')
-    
+
     while True:
         try:
             send_data = input()

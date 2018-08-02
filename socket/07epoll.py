@@ -13,15 +13,15 @@ import select
 
 
 def main():
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # 服务端设置非阻塞
-    server_socket.setblocking(False)
-    # 端口复用
-    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    server_socket.bind(('localhost', 9527))
-    server_socket.listen(2)
     # 创建epoll
     epoll = select.epoll()
+
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # 端口复用
+    server_socket.bind(('localhost', 9527))
+    server_socket.listen(4)
+    server_socket.setblocking(False)  # 服务端设置非阻塞
+
     # 注册监听server_socket
     # 第一个参数是：要监听的socket的文件描述符
     # 第二参数：要监听的事件类型
@@ -29,6 +29,7 @@ def main():
     epoll.register(server_socket.fileno(), select.EPOLLIN | select.EPOLLET)
     # 文件句柄到所对应对象的字典，格式为{句柄：对象}
     socket_dict = {}
+
     try:
         while True:
             print('等待事件中...')
