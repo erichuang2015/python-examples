@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+"""如果父类有metalcass, 那么也会影响子类.
+
+这里ModelMetaclass会调用两次, Model和User各一次.
+"""
+
 
 class Field(object):
 
@@ -26,14 +31,14 @@ class IntegerField(Field):
 
 class ModelMetaclass(type):
 
-    def __new__(cls, name, bases, attrs):
+    def __new__(mcs, name, bases, attrs):
         if name == 'Model':
             # __new__()方法接收到的参数依次是:
             # 当前准备创建的类的对象
             # 类的名字
             # 类继承的父类集合
             # 类的方法集合
-            return type.__new__(cls, name, bases, attrs)
+            return type.__new__(mcs, name, bases, attrs)
         print('Found model: %s' % name)
         mappings = dict()
         for k, v in attrs.items():
@@ -44,7 +49,7 @@ class ModelMetaclass(type):
             attrs.pop(k)
         attrs['__mappings__'] = mappings  # 保存属性和列的映射关系
         attrs['__table__'] = name  # 假设表名和类名一致
-        return type.__new__(cls, name, bases, attrs)
+        return type.__new__(mcs, name, bases, attrs)
 
 
 class Model(dict, metaclass=ModelMetaclass):

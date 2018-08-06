@@ -93,25 +93,25 @@ class Spam2(metaclass=SingletonMeta2):
 
 def main():
     print('='*50)
-    s1 = Singleton(1) # 会打印内容
-    s2 = Singleton(2) # 会打印内容
+    s1 = Singleton(1)  # 会打印内容
+    s2 = Singleton(2)  # 会打印内容
     print(s1 is s2)
-    print(s1.n) # s1属性被修改
+    print(s1.n)  # s1属性被修改
     print('='*50)
-    s1 = Singleton2(1) # 会打印内容
-    s2 = Singleton2(2) # 会打印内容
+    s1 = Singleton2(1)  # 会打印内容
+    s2 = Singleton2(2)  # 会打印内容
     print(s1 is s2)
-    print(s1.n) # s1属性被修改
+    print(s1.n)  # s1属性被修改
     print('='*50)
-    s1 = Spam(1) # 会打印内容
-    s2 = Spam(2) # 不会打印内容
+    s1 = Spam(1)  # 会打印内容
+    s2 = Spam(2)  # 不会打印内容
     print(s1 is s2)
-    print(s1.n) # s1属性未被修改
+    print(s1.n)  # s1属性未被修改
     print('='*50)
-    s1 = Spam2(1) # 会打印内容
-    s2 = Spam2(2) # 不会打印内容
+    s1 = Spam2(1)  # 会打印内容
+    s2 = Spam2(2)  # 不会打印内容
     print(s1 is s2)
-    print(s1.n) # s1属性未被修改
+    print(s1.n)  # s1属性未被修改
     print('='*50)
 
 
