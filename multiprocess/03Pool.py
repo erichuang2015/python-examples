@@ -24,6 +24,7 @@ if __name__ == '__main__':
     print('Parent process %s.' % os.getpid())
     p = Pool(4)  # 可以同时跑4个进程
     for i in range(4):
+        # 这里不会阻塞
         p.apply_async(long_time_task, args=(i,))
     print('Waiting for all subprocesses done...')
     p.close()
