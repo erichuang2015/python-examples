@@ -69,7 +69,8 @@ class Daemon:
         os.dup2(myso.fileno(), sys.stdout.fileno())
         os.dup2(myse.fileno(), sys.stderr.fileno())
 
-        atexit.register(self.delpid)
+        # 注册一个函数，在程序结束前会被执行
+        atexit.register(self.del_pidfile)
         pid = os.getpid()
         # 这里 open() 不能赋值给局部变量，用完会被释放掉，锁也就没了
         self.pf = open(self.pidfile, 'w')
@@ -77,13 +78,11 @@ class Daemon:
         self.pf.write('%s\n' % pid)
         self.pf.flush()
 
-    def delpid(self):
+    def del_pidfile(self):
         os.remove(self.pidfile)
 
     def start(self):
-        """
-        启动守护进程
-        """
+        """启动守护进程"""
 
         # 用于判断守护进程是否已经在运行，实现单例模式。
         # 如果pid文件文件上锁失败，则认为守护进程还在运行
@@ -100,9 +99,7 @@ class Daemon:
         self.run()
 
     def stop(self):
-        """
-        停止守护进程
-        """
+        """停止守护进程"""
 
         # 从pid文件中获取进程id
         pid = None
@@ -129,9 +126,8 @@ class Daemon:
             pass
 
     def restart(self):
-        """
-        重启
-        """
+        """重启守护进程"""
+
         self.stop()
         self.start()
 
