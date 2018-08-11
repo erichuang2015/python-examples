@@ -14,6 +14,9 @@ import queue
 from random import random
 
 
+myqueue = queue.Queue()
+
+
 # 自定义生产者线程类
 class Producer(threading.Thread):   
     def __init__(self, threadname):
@@ -41,7 +44,6 @@ class Consumer(threading.Thread):
 
 
 if __name__ == '__main__':
-    myqueue = queue.Queue()
     plist = []
     clist = []
     for i in range(10):

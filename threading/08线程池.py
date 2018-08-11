@@ -1,5 +1,6 @@
-"""
-一个基于thread和queue的线程池，以任务为队列元素，动态创建线程，重复利用线程，
+"""一个基于thread和queue的线程池。
+
+以任务为队列元素，动态创建线程，重复利用线程，
 通过close和terminate方法关闭线程池。
 """
 
@@ -171,7 +172,6 @@ class ThreadPool:
             state_list.remove(worker_thread)
 
 
-# 调用方式
 if __name__ == '__main__':
     # 创建一个最多包含5个线程的线程池
     pool = ThreadPool(5)
