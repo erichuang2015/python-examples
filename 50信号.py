@@ -10,19 +10,16 @@
 import signal
 import os
 import time
-import atexit
 
 
-def p():
-    print(123)
+def signal_handler(signum, frame):
+    print('I received: ', signum, frame)
+    exit(1)
 
 
 def task(name):
-    # 注册回调函数，程序结束时调用
-    # 感觉和 finally 一个意思
-    # finally 会执行的，它也会执行
-    # finally 不会执行的，它也不会执行
-    atexit.register(p)
+    # 注册信号处理函数，改变原本信号的行为
+    signal.signal(signal.SIGALRM, signal_handler)
 
     print('start task %s' % name)
 
@@ -36,7 +33,7 @@ def task(name):
     # os.kill(os.getpid(), signal.SIGTERM)
 
     # 会触发异常和 finally
-    os.kill(os.getpid(), signal.SIGINT)
+    # os.kill(os.getpid(), signal.SIGINT)
     
     time.sleep(4)
     print('task over!')
@@ -45,7 +42,7 @@ def task(name):
 def main():
     try:
         task(1)
-    except:
+    except KeyboardInterrupt:
         print('except!')
     finally:
         print('finally!')
