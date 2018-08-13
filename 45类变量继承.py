@@ -14,11 +14,11 @@ class Child2(Parent):
     pass
 
 
-print(Parent.x, Child1.x, Child2.x) # 1 1 1
-Child1.x = 2 # 注意这里用的是 类.属性
-print(Parent.x, Child1.x, Child2.x) # 1 2 1
-Parent.x = 3 # 注意这里用的是 类.属性
-print(Parent.x, Child1.x, Child2.x) # 3 2 3
+print(Parent.x, Child1.x, Child2.x)  # 1 1 1
+Child1.x = 2  # 注意这里用的是 类.属性
+print(Parent.x, Child1.x, Child2.x)  # 1 2 1
+Parent.x = 3  # 注意这里用的是 类.属性
+print(Parent.x, Child1.x, Child2.x)  # 3 2 3
 
 """
 使你困惑或是惊奇的是关于最后一行的输出是 3 2 3 而不是 3 2 1。

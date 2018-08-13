@@ -1,4 +1,4 @@
-"""实现守护进程。"""
+"""实现守护进程"""
 
 import sys
 import os
@@ -142,6 +142,8 @@ class Daemon:
 
 
 def arg_parse():
+    """添加命令行参数"""
+
     parser = argparse.ArgumentParser(description='A Daemon.')
 
     parser.add_argument(

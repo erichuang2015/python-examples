@@ -37,7 +37,10 @@ class D(object):
         pass
 
     def hello():
-        """TODO 奇怪, 这里没加self, 却能正常调用, 可能解释器把它当成了静态方法."""
+        """奇怪, 这里没加self, 却能正常调用, 可能解释器把它当成了静态方法.
+
+        原因：没用到self，默认当成静态方法
+        """
         print('D: hello, world!')
 
     def haha(self):

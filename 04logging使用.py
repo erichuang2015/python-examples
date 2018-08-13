@@ -30,15 +30,17 @@ def advance():
     # 第一步, 创建一个logger
     logger_name = 'test_log'
     logger = logging.getLogger(logger_name)  
-    logger.setLevel(logging.INFO) # 输出到屏幕的log级别
+    logger.setLevel(logging.INFO)  # 输出到屏幕的log级别
     
     # 第二步, 创建一个handler, 用于输出到控制台
     cmd_handler = logging.StreamHandler()  
     
     # 第三步, 再创建一个handler, 用于写入日志文件
-    log_file = 'logger.log'  
-    file_handler = logging.FileHandler(log_file, mode='w', delay=True) # delay 决定是否立即创建log文件
-    file_handler.setLevel(logging.WARNING) # 输出到file的log等级的开关  
+    log_file = 'logger.log'
+    # delay 决定是否立即创建log文件，
+    # 设为True，等有内容写入时，才创建
+    file_handler = logging.FileHandler(log_file, mode='w', delay=True)
+    file_handler.setLevel(logging.WARNING)  # 输出到file的log等级的开关
     
     # 第四步, 定义handler的输出格式
     formatter = logging.Formatter(

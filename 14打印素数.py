@@ -23,9 +23,13 @@ def primes():
         it = filter(not_divisible(n), it)  # 构造新序列
 
 
-if __name__ == '__main__':
+def main():
     for n in primes():
         if n < 1000:
             print(n)
         else:
             break
+
+
+if __name__ == '__main__':
+    main()

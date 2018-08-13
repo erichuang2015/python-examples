@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""subprocess 模块对于依赖 TTY 的外部命令不合适用."""
+"""subprocess 模块对于依赖 TTY 的外部命令不合适用。"""
 
 import subprocess
 
