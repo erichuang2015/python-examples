@@ -6,12 +6,13 @@ import asyncio
 
 async def wget(host):
     print('wget %s...' % host)
-    connect = asyncio.open_connection(host, 80)
-    reader, writer = await connect
+    reader, writer = await asyncio.open_connection(host, 80)
     header = 'GET / HTTP/1.1\r\nHost: %s\r\n\r\n' % host
     writer.write(header.encode('utf-8'))
     await writer.drain()
     while True:
+        print('%s 跳过' % host)
+        # 这里的 `readline()` 只会阻塞一次！
         line = await reader.readline()
         if line == b'\r\n':
             break

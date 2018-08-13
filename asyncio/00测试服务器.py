@@ -1,3 +1,5 @@
+"""用于测试协程."""
+
 from flask import Flask
 import time
  
