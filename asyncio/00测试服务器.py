@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     time.sleep(3)
     return 'Hello!'
- 
+
 
 if __name__ == '__main__':
     # hreaded，这表明 Flask 启动了多线程模式，不然默认是只有一个线程的。

@@ -28,10 +28,6 @@ def main():
     # 限制并发数
     sem = asyncio.Semaphore(8)
     loop = asyncio.get_event_loop()
-    # 发现 `loop.create_task()` 还能保证分组顺序
-    # 分组内顺序不保证
-    # tasks = [loop.create_task(wget(index, url, sem)) for index in range(16)]
-    # 无序
     tasks = [wget(index, url, sem) for index in range(16)]
     loop.run_until_complete(asyncio.wait(tasks))
     loop.close()

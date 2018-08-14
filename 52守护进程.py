@@ -44,15 +44,15 @@ class Daemon:
 
         signal.signal(signal.SIGTERM, signal_handler)
 
-        # 设置sid，成为session Leader
-        os.setsid()
-
         # 需要执行一些操作避免可能从父进程继承过来的影响守护进程的设定
         # 改变当前工作目录
         os.chdir('/')
 
         # 重设umask
         os.umask(0)
+
+        # 设置sid，成为session Leader
+        os.setsid()
 
         # 重定向0、1、2三个fd（依次为标准输入、标准输出、错误输出）
         # 这里需要注意，有些不讲究的程序或者文章，会直接将0、1、2关闭，

@@ -22,10 +22,12 @@ async def wget(host):
 
 
 def main():
+    # 注意任务列表不宜创建过大，因为是列表，会立即占用内存
     host_list = ['www.sina.com.cn', 'www.sohu.com', 'www.163.com']
     loop = asyncio.get_event_loop()
-    tasks = [loop.create_task(wget(host)) for host in host_list]
-    loop.run_until_complete(asyncio.wait(tasks))
+    tasks = [wget(host) for host in host_list]
+    done, pending = loop.run_until_complete(asyncio.wait(tasks))
+    print(done)
     loop.close()
 
 
