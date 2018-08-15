@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""multiprocessing模块Process类.
+"""multiprocessing模块的Process类。
 
-创建子进程时, 只需要创建一个 Process 实例, 用start()方法启动
-切记, 不要在多进程调用函数中使用全局变量,
-这样会引起一些奇怪的问题.
+创建子进程时，只需要创建一个 Process 实例，用 `start()` 方法启动，
+不要在多进程调用函数中使用全局变量，这样会报错。
 """
 
 import time
 from multiprocessing import Process
+
+a = 10
 
 
 def process1(n):
@@ -17,6 +18,9 @@ def process1(n):
     while True:
         print('process:{}'.format(n))
         time.sleep(1)
+        global a
+        a += 1
+        print(a)
 
 
 def process2(n):
@@ -24,9 +28,12 @@ def process2(n):
     for i in range(4):
         print('process:{}'.format(n))
         time.sleep(2)
+        global a
+        a += 1
+        print(a)
 
 
-if __name__ == '__main__':
+def main():
     # args必须是一个元组
     p1 = Process(target=process1, args=(1,))
     p2 = Process(target=process2, args=(2,))
@@ -38,3 +45,7 @@ if __name__ == '__main__':
     # p1.close()  # 注意Process类没有close()方法，别和Pool类搞混了
     p1.terminate()  # terminate()方法可以强制终止无限循环的子进程
     print('进程1 结束')
+
+
+if __name__ == '__main__':
+    main()

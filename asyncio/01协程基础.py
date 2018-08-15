@@ -19,6 +19,9 @@
 切换后，发现另一个函数还在阻塞状态，
 那么就会跳过它，直到整个任务列表都过一遍，
 再重新执行自己剩下内容。
+
+如果执行完阻塞任务，那么会一直往下执行（包括 `return` 出函数），
+直到遇到另一个阻塞点，便再切换到另一个函数执行。
 """
 
 import asyncio
@@ -34,10 +37,11 @@ async def func(index):
 
 async def hello(index):
     print('Hello world! index=%s, thread=%s' % (index, threading.currentThread().ident))
-    # `await` 会进入函数，直到遇到一个真值「阻塞点」时切换到另一个 `hello()` 执行
+    # `await` 会进入函数，直到遇到一个「阻塞点」时切换到另一个 `hello()` 执行
     s = await func(index)
     print(s)
     print('Hello again! index=%s, thread=%s' % (index, threading.currentThread().ident))
+    await asyncio.sleep(2)
     # 在最外层 `async` 函数中，
     # `return` 的结果不能直接获取，
     # 要先把 `coroutine` 封装成一个 `task`，
@@ -51,7 +55,7 @@ def main():
     loop = asyncio.get_event_loop()
 
     # `loop.create_task()` 把 `coroutine` 封装成 `task`
-    task_list = [loop.create_task(hello(n)) for n in range(4)]
+    task_list = [loop.create_task(hello(n)) for n in range(2)]
 
     try:
         # 执行列表多个任务必须调用 `asyncio.wait()`。
@@ -61,13 +65,7 @@ def main():
         for task in done_set:
             print(task.result())
     except KeyboardInterrupt:
-        print('wait all task done...')
-        loop.run_until_complete(asyncio.wait(task_list))
-        done_set, pending_set = loop.run_until_complete(asyncio.wait(task_list))
-        print(done_set)
-        print(pending_set)
-        for task in done_set:
-            print(task.result())
+        pass
     finally:
         loop.close()
 
