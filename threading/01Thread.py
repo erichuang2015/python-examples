@@ -8,6 +8,9 @@
 每个子线程的异常要在 `run()` 中捕获，
 而不能在主线程中捕获。
 
+可以用 `atexit.register(self.close)` 给子线程注册清理函数，
+让子线程退出时进行清理工作。
+
 `exit()` 可以退出当前线程。
 
 如果某个子线程的 daemon 属性为 False，主线程结束时会检测该子线程是否结束，
@@ -28,55 +31,71 @@ import threading
 import time
 import random
 import os
+import sys
+import atexit
 
 THREAD_NUM = 2
 
 
 class MyThread(threading.Thread):
-    def __init__(self, threadname, daemon=False):
+    def __init__(self, threadname, daemon):
         super().__init__(name=threadname, daemon=daemon)
+
+        self._running = True
+
         self.num = 0
 
     def run(self):
-        print('Thread %s: hello, world!' % self.name)
+        print('%s: start!' % self.name)
+        atexit.register(self.close)  # 每个线程结束时自动调用
+
         # 每个子线程的异常要在 `run()` 中捕获，
         # 而不能在主线程中捕获。
         try:
-            while True:
-                print('Thread %s: %s' % (self.name, self.num))
-                self.num += 1
-                time.sleep(random.randint(1, 6))
-                raise EOFError
+            while self._running:
+                print('%s: %s' % (self.name, self.num))
+                self.num += random.randint(1, 6)
+                time.sleep(self.num)
+                raise EOFError  # 模拟抛出异常
         except:
             t, v, tb = sys.exc_info()
             print(t)
+
+    def terminate(self):
+        self._running = False
 
     def save(self):
         """进行一些保存工作"""
 
         print('save num %s' % self.num)
 
+    def close(self):
+        """进行一些清理工作"""
+
+        print('close %s' % self.num)
+
 
 def main():
     thread_list = []
-    # 线程名不能为 0，原因未知
-    for i in range(1, THREAD_NUM+1):
-        t = MyThread(i, daemon=True)
+    for i in range(THREAD_NUM):
+        t = MyThread(f'thread{i+1}', daemon=True)
         thread_list.append(t)
 
     for t in thread_list:
         t.start()
 
+    start = time.time()
     try:
         for t in thread_list:
             t.join()
-    except KeyboardInterrupt:
-        print('等待子进程结束中...')
-        for t in thread_list:  # 此时子线程还未结束，所以必须把未完成的工作保存下来
+    except KeyboardInterrupt:  # 只有主线程能收到键盘中断
+        for t in thread_list:  # 防止下面在保存完后，线程又开始执行新一轮
+            t.terminate()
+        for t in thread_list:  # 保存未完成的子线程工作
             if t.is_alive():
                 t.save()
-
-    print('over!')
+    end = time.time()
+    print('\n[Finished in %.2fs]\n' % (end - start))
 
 
 if __name__ == '__main__':

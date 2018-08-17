@@ -66,8 +66,6 @@ def main():
             print(task.result())
     except KeyboardInterrupt:
         pass
-    finally:
-        loop.close()
 
     
 if __name__ == '__main__':
