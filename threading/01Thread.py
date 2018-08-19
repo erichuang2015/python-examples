@@ -41,13 +41,14 @@ class MyThread(threading.Thread):
     def __init__(self, threadname, daemon):
         super().__init__(name=threadname, daemon=daemon)
 
+        atexit.register(self.close)  # 注册清理函数，线程结束时自动调用
+
         self._running = True
 
         self.num = 0
 
     def run(self):
         print('%s: start!' % self.name)
-        atexit.register(self.close)  # 每个线程结束时自动调用
 
         # 每个子线程的异常要在 `run()` 中捕获，
         # 而不能在主线程中捕获。

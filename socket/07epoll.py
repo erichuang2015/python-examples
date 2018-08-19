@@ -54,17 +54,22 @@ def main():
                 # 当有客户端的数据发送过来的时候，会触发 EPOLLIN 事件
                 else:
                     client_socket = socket_dict[fd]
-                    # 将接收缓冲区设的很小,
-                    # 用于测试LT和ET模式
-                    recv_data = client_socket.recv(8)
-                    if recv_data:
-                        print(buffer.decode())
-                        client_socket.send(buffer.upper())
-                    else:
-                        print('对端关闭:', client_socket.getpeername())
-                        client_socket.close()
-                        epoll.unregister(fd)
-                        socket_dict.pop(fd)
+                    buf = b''
+                    try:
+                        while True:  # 在 ET 模式下，需要循环读，直到缓冲区无数据
+                            print('非阻塞读')
+                            # 将接收缓冲区设的很小,
+                            # 用于测试LT和ET模式
+                            recv_data = client_socket.recv(4)
+                            if not recv_data:
+                                print('对端关闭:', client_socket.getpeername())
+                                client_socket.close()
+                                epoll.unregister(fd)
+                                socket_dict.pop(fd)
+                            buf += recv_data
+                    except BlockingIOError:  # socket 设为非阻塞，缓存区无数据时读，会抛出这个异常
+                            print(buf.decode())
+                            client_socket.send(buf.upper())
     except KeyboardInterrupt:
         pass
     finally:
