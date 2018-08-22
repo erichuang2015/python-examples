@@ -8,6 +8,7 @@ def client():
 
     with socket.create_connection((hostname, 443)) as sock:
         with context.wrap_socket(sock, server_hostname=hostname) as ssock:
+            # 获取对方地址
             print(ssock.getpeername())
 
 

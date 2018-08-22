@@ -49,6 +49,7 @@ def fetch(url):
 
     sock = socket.socket()
     if port == 443:
+        # 这种使用 ssl 方法，已经在 3.7 被标记为不推荐
         sock = ssl.wrap_socket(sock)
 
     sock.connect((host, port))
