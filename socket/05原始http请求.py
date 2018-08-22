@@ -28,14 +28,13 @@ def parse_url(url):
 
     try:
         pos = url.lower().index('/')
-    except ValueError:
-        host = url
-        resource = '/'
-    else:
         host = url[:pos]
         resource = url[pos:]
         if (not resource.endswith('/')) and (resource.rfind('?') == -1):
             resource += '/'
+    except ValueError:
+        host = url
+        resource = '/'
 
     return host, port, resource
 
@@ -68,6 +67,8 @@ def fetch(url):
     print(headers.decode())
     print('*'*60)
     print(body.decode())
+    print('*'*60)
+    print(len(body))
 
 
 def main():

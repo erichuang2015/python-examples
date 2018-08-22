@@ -6,10 +6,11 @@
 事件类型：
 　　select.EPOLLIN    可读事件
 　　select.EPOLLOUT   可写事件
-　　select.EPOLLERR   错误事件
+　　select.EPOLLERR   错误事件名，这个事件是不需要专门注册的，默认就有，详见 `man epoll_ctl` 。
 　　select.EPOLLRDHUP 客户端断开事件
-　　select.EPOLLHUP   「which signals an unexpected close of the socket, i.e. usually an internal error」，
-                     这个事件是不需要专门注册的，默认就有，详见 `man epoll_ctl` 。
+　　select.EPOLLHUP  「 which signals an unexpected close of the socket,
+                      i.e. usually an internal error 」，
+                     这个事件是不需要专门注册的，默认就有。
 
 LT模式：epoll 默认模式，只要缓冲区还有数据就会触发事件。
 ET模式：事件只触发第一次，无论缓冲区是否还有数据，
@@ -60,6 +61,8 @@ class Manager:
     def run(self):
         while True:
             print('等待事件中...')
+            # `maxevents` 决定返回的列表最大长度，
+            # 这次若没返回完，则下次 `poll()` 时返回
             events = self.epoll.poll(maxevents=self.max_events)
 
             # 轮询注册的事件集合, 返回格式为[(文件句柄, 对应的事件), ...]
@@ -71,11 +74,11 @@ class Manager:
                     self.accept_handler()
 
                 # 当有客户端的数据发送过来的时候，会触发 EPOLLIN 事件
-                elif event & select.EPOLLIN:
+                elif event == select.EPOLLIN:
                     self.read_handler(fd)
 
                 # 当网络发送缓冲区未满，可以发送时，会触发 EPOLLOUT 事件
-                elif event & select.EPOLLOUT:
+                elif event == select.EPOLLOUT:
                     self.write_handler(fd)
 
     def accept_handler(self):
