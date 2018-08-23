@@ -1,6 +1,7 @@
 # Python值得注意的地方（想到哪写到哪）
 
 - `python -m http.server`，可以起一个 HTTP 服务器，可以用来下载当前目录下的文件。
+- `python -c 'import os; print(os.urandom(16))'`，生成一串随机密钥。
 - 把生成起转为列表后，生成器会耗尽（走一轮），所以不要把无限大小的生成器转换为列表！
 - `a = b or c`，如果 `b` 是 `False`，那么值为 `or` 右边那个子表达式的值。
 - 定义一个匿名函数：`lambda x: x * x`。

@@ -16,8 +16,9 @@ def main():
     address = ('www.iceflow.club', 80)
     try:
         sock.connect(address)
-    except BlockingIOError:
+    except BlockingIOError:  # socket 设置非阻塞后，第一次 connect 会抛出BlockingIOError
         pass
+    # 和 connect 关联的事件是 OUT（发送事件）。
     epoll.register(sock.fileno(), select.EPOLLOUT | select.EPOLLET)
 
     while True:

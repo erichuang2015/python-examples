@@ -15,6 +15,8 @@ while True:
     try:
         # 非阻塞
         i = q.get(block=False)
+        # 或
+        # i = q.get_nowait()
         print(i)
     except Empty:
         print('over')
