@@ -2,9 +2,9 @@
 
 import os
 import time
+import subprocess
 
 
-os.system('python 01Python之禅.py')
-# 可以看到是同步的
-time.sleep(2)
+#os.system('python 01Python之禅.py')
+subprocess.call(['python', '35urllib使用.py'])
 print('over')
