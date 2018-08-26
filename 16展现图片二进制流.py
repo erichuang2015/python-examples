@@ -28,34 +28,30 @@ def look_img(info: dict, nj: int, method: str='and') -> Image:
             s = '{} like "{}"'.format(k, v)
         lst.append('({})'.format(s))
     condition = ' {} '.format(method).join(lst)
+
+    db = sqlite3.connect('students.sqlite')
+    cursor = db.cursor()
+    # TODO 注意这里会被sql注入, 实际中不能这么用
+    cursor.execute('select img from info{} where {}'.format(nj, condition))
+    lst = cursor.fetchall()
     
-    try:
-        db = sqlite3.connect('students.sqlite')
-        cursor = db.cursor()
-        # TODO 注意这里会被sql注入, 实际中不能这么用
-        cursor.execute('select img from info{} where {}'.format(nj, condition))
-        lst = cursor.fetchall()
-    finally:
-        cursor.close()
-        db.close()
-    
-    imgs = Image.new('RGBA', (150 * 6, 200 * (len(lst) // 6 + 1))) # 打底背景
-    x, y= 0, 0 # 照片坐标
+    imgs = Image.new('RGBA', (150 * 6, 200 * (len(lst) // 6 + 1)))  # 打底背景
+    x, y = 0, 0  # 照片坐标
     for stream in lst:
         with BytesIO(stream[0]) as f:
             img = Image.open(f)
-            img = img.resize((144, 192)) # resize照片
-            imgs.paste(img, (x % 6 * 150, y * 200)) # 在打底背景上铺设照片
+            img = img.resize((144, 192))  # resize照片
+            imgs.paste(img, (x % 6 * 150, y * 200))  # 在打底背景上铺设照片
         x += 1
-        if x % 6 == 0: # 每行显示6张照片
+        if x % 6 == 0:  # 每行显示6张照片
             y += 1
     return imgs
 
 
 def main():
     nj = 2014
-    info = {'xm':['王__'], 'xb':'男', 'bj':'%计科3'}
-    look_img(info, nj)
+    info = {'xm': ['王__'], 'xb': '男', 'bj': '%计科3'}
+    look_img(info, nj).show()
 
 
 if __name__ == '__main__':

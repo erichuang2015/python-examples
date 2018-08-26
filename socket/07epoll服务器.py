@@ -132,7 +132,7 @@ class Manager:
 
 def main():
     address = ('localhost', 9527)
-    max_events = 2  # 这个参数其实不关键，对 `listen` 和 `epoll` 基本没影响
+    max_events = 1  # 这个参数其实不关键，对 `listen` 和 `epoll` 基本没影响
     m = Manager(address, max_events)
     try:
         m.run()
