@@ -1,4 +1,5 @@
-"""
+"""用 Python 生成各种时间格式。
+
 注意不同时间类型不能相互比较,
 如datetime.date类和datetime.datetime类.
 """
@@ -20,6 +21,14 @@ print('*' * 50)
 # 今天零点时间
 dt = datetime.datetime(d.year, d.month, d.day)
 print(dt)
+print('*' * 50)
+
+# utc时间
+utcnow = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+print(utcnow)
+# %p 显示 AM 和 PM，需要把小时格式符改为 %I
+utcnow_format = datetime.datetime.utcnow().strftime('%m/%d/%Y %I:%M:%S %p')
+print(utcnow_format)
 print('*' * 50)
 
 # 转换为标准时间
