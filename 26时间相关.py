@@ -31,7 +31,7 @@ utcnow_format = datetime.datetime.utcnow().strftime('%m/%d/%Y %I:%M:%S %p')
 print(utcnow_format)
 print('*' * 50)
 
-# 转换为标准时间
+# 字符串转换为 datetime 类型
 s = '2017年7月20日 10点25分10秒'
 dt = datetime.datetime.strptime(s, '%Y年%m月%d日 %H点%M分%S秒')
 print(dt)
@@ -45,7 +45,7 @@ timestamp = int(t) # 保留精度秒
 print(timestamp)
 print('*' * 50)
 
-# 时间戳转换成时间, 可存入mysql(DATETIME类型)
+# 时间戳转换成时间，可存入 mysql（DATETIME 类型）
 dt = datetime.datetime.fromtimestamp(timestamp)
 print(dt)
 print('*' * 50)

@@ -26,7 +26,8 @@ def main():
     # exec('print(d)')
 
     # exec('print(e)')
-    namespace = {'a':1, 'b':2}
+
+    namespace = {'a': 1, 'b': 2}
     exec('c = a + b', namespace)
     print(namespace['c'])
 
