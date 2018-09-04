@@ -51,4 +51,4 @@ def print_all_file(path='.'):
 
 
 if __name__ == '__main__':
-    print_all_dir()
+    print_all()
