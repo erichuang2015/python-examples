@@ -5,6 +5,6 @@ import time
 import subprocess
 
 
-#os.system('python 01Python之禅.py')
+# os.system('python 01Python之禅.py')
 subprocess.call(['python', '35urllib使用.py'])
 print('over')
