@@ -31,7 +31,6 @@ def print_specified_dir(path='.'):
                 print(os.path.abspath(os.path.join(dirpath, filename)))
 
 
-
 def print_all_dir(path='.'):
     """打印当前目录下所有文件夹."""
 

@@ -44,25 +44,30 @@ class C:
         self.c = 6666
 
 
-c = C()
-print(C.__dict__)
-print(c.__dict__)
-print(dir(C))
-print(dir(c))
-print('*' * 30)
-print('实例', c.a)
-print('类', C.a)
-c.a = 10
-print('实例', c.a)
-print('类', C.a)
-c.class_foo()
-print('实例', c.a)
-print('类', C.a)
-c.foo()
-print('实例', c.a)
-print('类', C.a)
-c.class_foo2()
-print('实例', c.b)
-print('类', C.b)
-c.foo2()
-print(c.c)
+def main():
+    c = C()
+    print(C.__dict__)
+    print(c.__dict__)
+    print(dir(C))
+    print(dir(c))
+    print('*' * 30)
+    print('实例', c.a)
+    print('类', C.a)
+    c.a = 10
+    print('实例', c.a)
+    print('类', C.a)
+    c.class_foo()
+    print('实例', c.a)
+    print('类', C.a)
+    c.foo()
+    print('实例', c.a)
+    print('类', C.a)
+    c.class_foo2()
+    print('实例', c.b)
+    print('类', C.b)
+    c.foo2()
+    print(c.c)
+
+
+if __name__ == '__main__':
+    main()

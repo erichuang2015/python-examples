@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""defaultdict用法示例, 注意和普通字典比较."""
+"""defaultdict 用法示例，注意和普通字典比较。
+"""
 
 from collections import defaultdict
 
@@ -11,8 +12,9 @@ def log_missing():
     return 0
 
 
-# 统计有多少个缺失的键
 def increment_with_report(current, increments):
+    """统计有多少个缺失的键。"""
+
     added_count = 0
 
     def missing():
@@ -27,7 +29,7 @@ def increment_with_report(current, increments):
     return result, added_count
 
 
-if __name__ == '__main__':
+def main():
     current = {'green': 12, 'blue': 3}
     increments = [
         ('red', 5),
@@ -37,7 +39,11 @@ if __name__ == '__main__':
     result = defaultdict(log_missing, current)
     print('Before:', dict(result))
     for key, amount in increments:
-        # 当result中不存在该key时, 会调用log_missing函数
-        # 打印'key added', 并把该key的值设为0
+        # 当 result 中不存在该 key 时，会调用 log_missing 函数
+        # 打印 'key added'，并把该 key 的值设为 0
         result[key] += amount
     print('After:', dict(result))
+
+
+if __name__ == '__main__':
+    main()

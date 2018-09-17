@@ -1,4 +1,4 @@
-"""从数据库中读取指定图片二进制流，并通过PIL展现出来"""
+"""从数据库中读取指定图片二进制流，并通过PIL展现出来。"""
 
 import sqlite3
 from io import BytesIO

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""用dict对象完成switch_case的功能, 以运算符为例."""
+"""用 dict 对象完成 switch_case 的功能，以运算符为例。"""
 
 
 # bad

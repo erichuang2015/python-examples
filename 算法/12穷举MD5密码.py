@@ -5,7 +5,7 @@
 
 from hashlib import md5
 from string import ascii_letters, digits
-from itertools import permutations # 排列数
+from itertools import permutations  # 排列数
 
 from scipy import special as S
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""用deque实现读取文件最后n行."""
+"""用 deque 实现读取文件最后 n 行。"""
 
 from collections import deque
 from collections import Iterator, Iterable

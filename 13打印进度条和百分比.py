@@ -50,4 +50,7 @@ def load4():
 
 
 if __name__ == '__main__':
+    load1()
+    load2()
+    load3()
     load4()
