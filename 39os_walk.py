@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""os.walk()用法."""
+"""`os.walk()` 用法。"""
 
 import os
 
