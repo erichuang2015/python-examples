@@ -4,7 +4,8 @@
 """序列去重方法。
 """
 
-def dedupe(items, key=None):
+
+def dedupe(items):
     """序列去重，并保持有序，元素必须可哈希。"""
 
     seen = set()
@@ -23,9 +24,9 @@ def dedupe2(items, key=None):
     seen = set()
     for item in items:
         val = item if key is None else key(item)
-            if val not in seen:
-                yield item
-                seen.add(val)
+        if val not in seen:
+            yield item
+            seen.add(val)
 
 
 def main():

@@ -10,6 +10,22 @@
 
 - 定义一个匿名函数：`lambda x, y: x * y`。
 
+- Python中，`bool` 类型是 `int` 类型的一个子类：
+
+  ```python
+  isinstance(True, int)   # True
+  isinstance(False, int)  # True
+
+  True == 1 == 1.0 and False == 0 == 0.0  # True
+
+  another_dict = {}
+  another_dict[True] = "JavaScript"
+  another_dict[1] = "Ruby"
+  another_dict[1.0] = "Python"
+
+  another_dict[True]  # Python
+  ```
+
 - 函数参数的默认值，会在每个模块加载进来时求出，所以不要用非静态类型做函数参数默认值，如：
 
   ```python
