@@ -20,13 +20,12 @@ def dedupe2(items, key=None):
     
     key 接收一个函数，计算出用来去重的值。
     """
-    
+
     seen = set()
     for item in items:
         val = item if key is None else key(item)
         if val not in seen:
             yield item
-            seen.add(val)
 
 
 def main():

@@ -25,7 +25,7 @@ def primes():
 
 def main():
     for n in primes():
-        if n < 1000:
+        if n < 100000:
             print(n)
         else:
             break

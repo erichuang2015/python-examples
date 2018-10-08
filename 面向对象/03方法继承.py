@@ -47,11 +47,16 @@ class D(object):
         print('D: haha!')
 
 
-A.hello()
-A.haha()
-B.hello()
-B.haha()
-C.hello()
-C.haha()
-D.hello()
-#D.haha()  # D.haha(123) 可以
+def test():
+    A.hello()
+    A.haha()
+    B.hello()
+    B.haha()
+    C.hello()
+    C.haha()
+    D.hello()
+    # D.haha()  # D.haha(123) 可以
+
+
+if __name__ == '__main__':
+    test()

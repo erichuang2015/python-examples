@@ -1,4 +1,5 @@
 .vscode/
 .idea/
+.mypy_cache/
 00test.py
 example.db

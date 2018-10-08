@@ -15,14 +15,14 @@
   ```python
   isinstance(True, int)   # True
   isinstance(False, int)  # True
-
+  
   True == 1 == 1.0 and False == 0 == 0.0  # True
-
+  
   another_dict = {}
   another_dict[True] = "JavaScript"
   another_dict[1] = "Ruby"
   another_dict[1.0] = "Python"
-
+  
   another_dict[True]  # Python
   ```
 
@@ -175,6 +175,14 @@
 - `[.122, 1.]`，结果为 `[0.122, 1.0]`。
 
 - 一个迷之操作：`t = (1, 2, [30, 40]); t += [50, 60]`，会抛出异常，但 `t` 的元素也改变了。因为元组虽然不可变，但若其成员可变，是能改变其成员值的。可以用 `t[2].extend([50, 60])` 避免这个异常，但是最好不要把可变对象放在元组中。
+
+- 切片超过列表长度不会报错，会返回列表最大长度内容，如：
+
+  ```python
+  l = [1, 2, 3, 4, 5]
+  
+  l[:10]  # [1, 2, 3, 4, 5]
+  ```
 
 - 用切片来逆序列表，字符串等：`L[::-1]; word[::-1]`。
 
